@@ -1,51 +1,173 @@
-# SALA • SAFE-LOAD ANALYTICS (SALA) 🚛❄️
-### Predictive Intelligence for Norwegian Logistics
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALA • Safe-Load Analytics</title>
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #161b22;
+            --accent-blue: #58a6ff;
+            --accent-red: #f85149;
+            --text-primary: #adbac7;
+            --text-bright: #ffffff;
+        }
 
-**Official Portal:** [www.safelast.no](http://www.safelast.no)  
-**Location:** Larvik, Norway  
-**Author:** Paulo Fernando De Barros
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.6;
+        }
 
----
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-## 🎯 The Mission
-SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector. We bridge the gap between traditional safety protocols and modern predictive data to reduce long-term sickness claims (sykemelding) and protect driver health.
+        header {
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+        }
 
-## 🧠 The Intelligence (Algorithm)
-Unlike static safety manuals, SALA uses a dynamic algorithm to calculate the **Ergonomic Risk Index ($R_i$)** in real-time.
+        h1 {
+            color: var(--text-bright);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
 
-### Mathematical Framework:
-$R_i = (S_f \cdot L_w) + (F_i \cdot T_h)$
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            font-weight: 500;
+        }
 
-- **Sf (Surface Factor):** Dynamic coefficients for sub-arctic conditions (Snow, Slush, Mud).
-- **Lw (Load Weight):** Impact of total tonnage handled.
-- **Fi (Fatigue Index):** Cumulative metabolic cost.
-- **Th (Time/Hours):** Duration of continuous physical activity.
+        .domain {
+            display: block;
+            margin-top: 10px;
+            color: #768390;
+            text-decoration: none;
+        }
 
----
+        section {
+            margin-bottom: 50px;
+        }
 
-## 🚀 Key Strategic Benefits
+        h2 {
+            color: var(--text-bright);
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
 
-### For Transport Companies
-* **Operational ROI:** Lower insurance premiums and reduced turnover.
-* **Compliance:** Full alignment with **Arbeidsmiljøloven** (The Working Environment Act).
+        .algorithm-box {
+            background-color: var(--card-bg);
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            margin: 30px 0;
+        }
 
-### For Unions & Drivers (YTF/NTF)
-* **Career Longevity:** Data-backed evidence to prevent Musculoskeletal Disorders (MSDs).
-* **Safety First:** Real-time "Go/No-Go" decision support for physical loading.
+        .formula {
+            font-size: 1.8rem;
+            color: var(--text-bright);
+            font-weight: bold;
+            margin: 15px 0;
+        }
 
-### For NAV & Regulatory Bodies
-* **Preventive Data:** Precision analytics for public health intervention in the logistics sector.
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
----
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+        }
 
-## 🇳🇴 Norwegian Standards Alignment
-The SALA project is developed to complement the **YSK (Statens vegvesen)** professional competence standards, ensuring that data insights are practical, legal, and culturally relevant to the Norwegian workplace.
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
 
-## 🛠 Tech Stack
-* **Analytics:** Predictive Modeling / Ergonomic Risk Scoring
-* **Domain:** Logistics & Occupational Health
-* **Documentation:** Technical Thesis & Methodology
+        .card h3 {
+            color: var(--accent-blue);
+            margin-top: 0;
+        }
 
----
-© 2026 SALA - Safe-Load Analytics. All rights reserved.  
-*Smarter Data. Safer Logistics.*
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #30363d;
+            padding-top: 30px;
+            margin-top: 60px;
+            color: #768390;
+        }
+
+        .highlight { color: var(--accent-red); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>SALA • SAFE-LOAD ANALYTICS</h1>
+            <div class="subtitle">Predictive Intelligence for Norwegian Logistics</div>
+            <a href="http://www.safelast.no" class="domain">www.safelast.no</a>
+        </header>
+
+        <section>
+            <h2>Overview</h2>
+            <p>SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector. We bridge the gap between traditional safety protocols and modern predictive data to reduce long-term sickness claims (sykemelding) and protect driver health.</p>
+        </section>
+
+        <section>
+            <h2>The Core Algorithm</h2>
+            <div class="algorithm-box">
+                <p>Ergonomic Risk Index Calculation:</p>
+                <div class="formula">Ri = (Sf × Lw) + (Fi × Th)</div>
+            </div>
+            <ul>
+                <li><strong>Sf (Surface Factor):</strong> Dynamic coefficients for sub-arctic conditions (Snow, Slush, Mud).</li>
+                <li><strong>Lw (Load Weight):</strong> Impact of total tonnage handled.</li>
+                <li><strong>Fi (Fatigue Index):</strong> Cumulative metabolic cost based on active duty.</li>
+                <li><strong>Th (Time/Hours):</strong> Duration of continuous physical intervention.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Strategic Benefits</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Transport Companies</h3>
+                    <p>Lower insurance premiums, reduced staff turnover, and full compliance with <strong>Arbeidsmiljøloven</strong>.</p>
+                </div>
+                <div class="card">
+                    <h3>Drivers & Unions</h3>
+                    <p>Real-time "Go/No-Go" safety support to prevent Musculoskeletal Disorders (MSDs).</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Regulatory Alignment</h2>
+            <p>The SALA project is developed to complement the <strong>YSK (Statens vegvesen)</strong> professional competence standards, ensuring that data insights are practical, legal, and culturally relevant to the Norwegian workplace.</p>
+        </section>
+
+        <footer>
+            <p>Author: Paulo Fernando De Barros | Larvik, Norway</p>
+            <p>&copy; 2026 SALA - Safe-Load Analytics. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
