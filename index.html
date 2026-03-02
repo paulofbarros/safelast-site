@@ -6,13 +6,12 @@
     <title>SALA • Safe-Load Analytics</title>
     <style>
         :root {
-            /* Palette: Clean, Light, Professional */
-            --bg-color: #ffffff;             /* Fundo Branco Puro */
-            --card-bg: #f0f7ff;               /* Azul Super Claro (Gelo) para Destaque */
-            --accent-blue-dark: #0056b3;     /* Azul Forte para Títulos e Links */
-            --text-primary: #1a1a1a;          /* Texto Quase Preto para Leitura */
-            --text-secondary: #4a4a4a;        /* Texto Cinza para Subtítulos */
-            --border-color: #d1e3f8;          /* Borda Suave para os Cards */
+            --bg-color: #ffffff;
+            --card-bg: #f0f7ff;
+            --accent-blue-dark: #0056b3;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --border-color: #d1e3f8;
         }
 
         body {
@@ -21,7 +20,6 @@
             color: var(--text-primary);
             margin: 0;
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -33,154 +31,61 @@
         header {
             text-align: center;
             border-bottom: 1px solid #eaeaea;
-            padding-bottom: 50px;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+        }
+
+        h1 { font-size: 2.8rem; margin-bottom: 5px; font-weight: 800; }
+        .subtitle { font-size: 1.25rem; color: var(--accent-blue-dark); font-weight: 500; }
+
+        /* NOVA SEÇÃO DE LINKS (DASHBOARD / COMPANY / DRIVE) */
+        .nav-portal {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
             margin-bottom: 50px;
         }
 
-        h1 {
-            color: var(--text-primary);
-            font-size: 2.8rem;
-            margin-bottom: 5px;
-            letter-spacing: -1px;
-            font-weight: 800;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--accent-blue-dark);
-            font-weight: 500;
-            margin-top: 0;
-        }
-
-        .domain {
-            display: inline-block;
-            margin-top: 15px;
-            color: #6a6a6a;
+        .nav-button {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            background-color: var(--accent-blue-dark);
+            color: white;
             text-decoration: none;
-            font-size: 0.95rem;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
         }
 
-        .domain:hover {
-            border-color: #bbb;
-        }
+        .nav-button:hover { opacity: 0.9; }
+        .nav-button.secondary { background-color: #f0f0f0; color: #333; border: 1px solid #ddd; }
 
-        section {
-            margin-bottom: 60px;
-        }
+        section { margin-bottom: 60px; }
+        h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; }
 
-        h2 {
-            color: var(--text-primary);
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-
-        /* Destaque do Algoritmo - Fundo Azul Super Claro */
         .algorithm-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 30px;
             text-align: center;
-            margin: 40px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        .algorithm-box p {
-            margin-top: 0;
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .formula {
-            font-size: 2.2rem;
-            color: var(--accent-blue-dark);
-            font-weight: 800;
-            margin: 10px 0;
-            letter-spacing: 1px;
-        }
-
-        .algorithm-list {
-            list-style-type: none;
-            padding: 0;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .algorithm-list li {
-            background-color: #ffffff;
-            border: 1px solid #f0f0f0;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        .algorithm-list li strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* Grid de Cards - Fundo Azul Super Claro */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.2rem; }
-            .formula { font-size: 1.8rem; }
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            color: var(--accent-blue-dark);
-            margin-top: 0;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 0;
-        }
+        .formula { font-size: 2.2rem; color: var(--accent-blue-dark); font-weight: 800; }
 
         footer {
             text-align: center;
             font-size: 0.9rem;
             border-top: 1px solid #eaeaea;
             padding-top: 40px;
-            margin-top: 80px;
             color: #888;
         }
 
-        footer p {
-            margin: 5px 0;
+        @media (max-width: 600px) {
+            .nav-portal { grid-template-columns: 1fr; }
         }
-
-        .author {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
     </style>
 </head>
 <body>
@@ -189,12 +94,18 @@
         <header>
             <h1>SALA • SAFE-LOAD ANALYTICS</h1>
             <p class="subtitle">Predictive Intelligence for Norwegian Logistics</p>
-            <a href="http://www.safelast.no" class="domain">www.safelast.no</a>
+            <p>www.safelast.no</p>
         </header>
+
+        <nav class="nav-portal">
+            <a href="dashboard.html" class="nav-button">LIVE DASHBOARD</a>
+            <a href="#" class="nav-button secondary">COMPANY ACCESS</a>
+            <a href="#" class="nav-button secondary">PROJECT DRIVE</a>
+        </nav>
 
         <section>
             <h2>Overview</h2>
-            <p>SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector. We bridge the gap between traditional safety protocols and modern predictive data to reduce long-term sickness claims (sykemelding) and protect driver health.</p>
+            <p>SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).</p>
         </section>
 
         <section>
@@ -203,36 +114,10 @@
                 <p>Ergonomic Risk Index Calculation:</p>
                 <div class="formula">Ri = (Sf × Lw) + (Fi × Th)</div>
             </div>
-            
-            <ul class="algorithm-list">
-                <li><strong>Sf (Surface Factor):</strong> Dynamic coefficients for sub-arctic conditions (Snow, Slush, Mud).</li>
-                <li><strong>Lw (Load Weight):</strong> Impact of total tonnage handled.</li>
-                <li><strong>Fi (Fatigue Index):</strong> Cumulative metabolic cost based on active duty.</li>
-                <li><strong>Th (Time/Hours):</strong> Duration of continuous physical intervention.</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Strategic Benefits</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Transport Companies</h3>
-                    <p>Lower insurance premiums, reduced staff turnover, and full compliance with <strong>Arbeidsmiljøloven</strong>.</p>
-                </div>
-                <div class="card">
-                    <h3>Drivers & Unions</h3>
-                    <p>Real-time "Go/No-Go" safety support to prevent Musculoskeletal Disorders (MSDs).</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Regulatory Alignment</h2>
-            <p>The SALA project is developed to complement the <strong>YSK (Statens vegvesen)</strong> professional competence standards, ensuring that data insights are practical, legal, and culturally relevant to the Norwegian workplace.</p>
         </section>
 
         <footer>
-            <p>Author: <span class="author">Paulo Fernando De Barros</span> | Larvik, Norway</p>
+            <p>Author: <strong>Paulo Fernando De Barros</strong> | Larvik, Norway</p>
             <p>&copy; 2026 SALA - Safe-Load Analytics. All rights reserved.</p>
         </footer>
     </div>
