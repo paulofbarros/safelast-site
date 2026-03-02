@@ -6,12 +6,13 @@
     <title>SALA • Safe-Load Analytics</title>
     <style>
         :root {
-            --bg-color: #0b0e14;
-            --card-bg: #161b22;
-            --accent-blue: #58a6ff;
-            --accent-red: #f85149;
-            --text-primary: #adbac7;
-            --text-bright: #ffffff;
+            /* Palette: Clean, Light, Professional */
+            --bg-color: #ffffff;             /* Fundo Branco Puro */
+            --card-bg: #f0f7ff;               /* Azul Super Claro (Gelo) para Destaque */
+            --accent-blue-dark: #0056b3;     /* Azul Forte para Títulos e Links */
+            --text-primary: #1a1a1a;          /* Texto Quase Preto para Leitura */
+            --text-secondary: #4a4a4a;        /* Texto Cinza para Subtítulos */
+            --border-color: #d1e3f8;          /* Borda Suave para os Cards */
         }
 
         body {
@@ -20,100 +21,166 @@
             color: var(--text-primary);
             margin: 0;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         header {
             text-align: center;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 40px;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            color: var(--text-bright);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--accent-blue);
-            font-weight: 500;
-        }
-
-        .domain {
-            display: block;
-            margin-top: 10px;
-            color: #768390;
-            text-decoration: none;
-        }
-
-        section {
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 50px;
             margin-bottom: 50px;
         }
 
-        h2 {
-            color: var(--text-bright);
-            border-left: 4px solid var(--accent-blue);
-            padding-left: 15px;
-            margin-bottom: 20px;
+        h1 {
+            color: var(--text-primary);
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+            font-weight: 800;
         }
 
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-blue-dark);
+            font-weight: 500;
+            margin-top: 0;
+        }
+
+        .domain {
+            display: inline-block;
+            margin-top: 15px;
+            color: #6a6a6a;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .domain:hover {
+            border-color: #bbb;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        /* Destaque do Algoritmo - Fundo Azul Super Claro */
         .algorithm-box {
             background-color: var(--card-bg);
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
             text-align: center;
-            margin: 30px 0;
+            margin: 40px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .algorithm-box p {
+            margin-top: 0;
+            color: var(--text-secondary);
+            font-size: 1rem;
         }
 
         .formula {
-            font-size: 1.8rem;
-            color: var(--text-bright);
-            font-weight: bold;
-            margin: 15px 0;
+            font-size: 2.2rem;
+            color: var(--accent-blue-dark);
+            font-weight: 800;
+            margin: 10px 0;
+            letter-spacing: 1px;
         }
 
+        .algorithm-list {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .algorithm-list li {
+            background-color: #ffffff;
+            border: 1px solid #f0f0f0;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .algorithm-list li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Grid de Cards - Fundo Azul Super Claro */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 25px;
         }
 
         @media (max-width: 600px) {
             .grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            .formula { font-size: 1.8rem; }
         }
 
         .card {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid #30363d;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .card h3 {
-            color: var(--accent-blue);
+            color: var(--accent-blue-dark);
             margin-top: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
         }
 
         footer {
             text-align: center;
             font-size: 0.9rem;
-            border-top: 1px solid #30363d;
-            padding-top: 30px;
-            margin-top: 60px;
-            color: #768390;
+            border-top: 1px solid #eaeaea;
+            padding-top: 40px;
+            margin-top: 80px;
+            color: #888;
         }
 
-        .highlight { color: var(--accent-red); font-weight: bold; }
+        footer p {
+            margin: 5px 0;
+        }
+
+        .author {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
     </style>
 </head>
 <body>
@@ -121,7 +188,7 @@
     <div class="container">
         <header>
             <h1>SALA • SAFE-LOAD ANALYTICS</h1>
-            <div class="subtitle">Predictive Intelligence for Norwegian Logistics</div>
+            <p class="subtitle">Predictive Intelligence for Norwegian Logistics</p>
             <a href="http://www.safelast.no" class="domain">www.safelast.no</a>
         </header>
 
@@ -136,7 +203,8 @@
                 <p>Ergonomic Risk Index Calculation:</p>
                 <div class="formula">Ri = (Sf × Lw) + (Fi × Th)</div>
             </div>
-            <ul>
+            
+            <ul class="algorithm-list">
                 <li><strong>Sf (Surface Factor):</strong> Dynamic coefficients for sub-arctic conditions (Snow, Slush, Mud).</li>
                 <li><strong>Lw (Load Weight):</strong> Impact of total tonnage handled.</li>
                 <li><strong>Fi (Fatigue Index):</strong> Cumulative metabolic cost based on active duty.</li>
@@ -164,7 +232,7 @@
         </section>
 
         <footer>
-            <p>Author: Paulo Fernando De Barros | Larvik, Norway</p>
+            <p>Author: <span class="author">Paulo Fernando De Barros</span> | Larvik, Norway</p>
             <p>&copy; 2026 SALA - Safe-Load Analytics. All rights reserved.</p>
         </footer>
     </div>
