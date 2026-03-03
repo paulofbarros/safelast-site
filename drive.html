@@ -3,121 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SALA • Driver View</title>
+    <title>SALA • Driver Scanner</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
     <style>
-        body { 
-            background: #0a0e14; color: #ffffff; font-family: sans-serif; 
-            margin: 0; display: flex; flex-direction: column; align-items: center; 
-            min-height: 100vh; padding: 20px; box-sizing: border-box;
-        }
+        body { background: #0a0e14; color: #ffffff; font-family: sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         .app-container { width: 100%; max-width: 400px; text-align: center; }
-        .risk-circle {
-            width: 160px; height: 160px; border-radius: 50%;
-            border: 12px solid #1a1f26; margin: 15px auto;
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; transition: all 0.4s ease;
-        }
-        #risk-value { font-size: 3rem; font-weight: 900; margin: 0; }
-        .input-group { margin-top: 15px; text-align: left; }
-        label { display: block; color: #888; font-size: 0.65rem; margin-bottom: 4px; font-weight: bold; letter-spacing: 1px; }
-        input { 
-            background: #1a1f26; border: 1px solid #333; color: white; 
-            padding: 10px; width: 100%; border-radius: 8px; 
-            font-size: 1rem; text-align: center; margin-bottom: 12px;
-            box-sizing: border-box;
-        }
-        button { 
-            background: #007bff; color: white; border: none; 
-            padding: 16px; width: 100%; border-radius: 12px; 
-            font-size: 1.1rem; font-weight: bold; cursor: pointer;
-            margin-top: 10px;
-        }
-        .status-msg { margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 8px; font-size: 0.85rem; }
+        .risk-circle { width: 150px; height: 150px; border-radius: 50%; border: 10px solid #1a1f26; margin: 15px auto; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        #risk-value { font-size: 2.5rem; font-weight: 900; margin: 0; }
+        #reader { width: 100%; background: #1a1f26; border-radius: 12px; margin-bottom: 20px; overflow: hidden; display: none; }
+        .btn-scan { background: #28a745; color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; font-weight: bold; margin-bottom: 20px; cursor: pointer; }
+        .input-group { text-align: left; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; }
+        label { display: block; color: #888; font-size: 0.7rem; margin-bottom: 5px; }
+        input { background: #1a1f26; border: 1px solid #333; color: white; padding: 8px; width: 100%; border-radius: 5px; margin-bottom: 10px; box-sizing: border-box; }
+        .status-msg { margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 8px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <p style="color: #007bff; font-weight: bold; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 5px;">SALA • UNIVERSAL DRIVER MODE</p>
-        
-        <div class="risk-circle" id="circle">
-            <p id="risk-value">--%</p>
-            <span style="font-size: 0.6rem; color: #888;">RISK INDEX</span>
-        </div>
+<div class="app-container">
+    <p style="color: #007bff; font-weight: bold; letter-spacing: 2px;">SALA • SMART SCANNER</p>
+    
+    <div id="reader"></div>
+    <button class="btn-scan" id="scan-btn" onclick="startScanner()">[ ] SCAN NEXT PACKAGE</button>
 
-        <div id="status" class="status-msg">READY</div>
-
-        <div class="input-group">
-            <label>DRIVING HOURS</label>
-            <input type="number" id="hours" value="2.0" step="0.1">
-            
-            <label>OUTSIDE TEMP (°C)</label>
-            <input type="number" id="temp" value="-2">
-
-            <label>CARGO WEIGHT (TONS)</label>
-            <input type="number" id="weight" value="0">
-
-            <label>HEAVY PACKAGES (>25KG)</label>
-            <input type="number" id="packages" value="0">
-            
-            <button onclick="updateDriverView()">CHECK SAFETY STATUS</button>
-        </div>
-        
-        <a href="index.html" style="color: #444; text-decoration: none; display: block; margin-top: 20px; font-size: 0.75rem;">← Exit to Portal</a>
+    <div class="risk-circle" id="circle">
+        <p id="risk-value">--%</p>
+        <span style="font-size: 0.6rem; color: #888;">LIVE RISK</span>
     </div>
 
-    <script>
-        async function updateDriverView() {
-            const h = document.getElementById('hours').value;
-            const t = document.getElementById('temp').value;
-            const w = document.getElementById('weight').value;
-            const p = document.getElementById('packages').value;
-            
-            const riskValueText = document.getElementById('risk-value');
-            const circle = document.getElementById('circle');
-            const status = document.getElementById('status');
+    <div id="status" class="status-msg">WAITING FOR SCAN</div>
 
-            riskValueText.innerText = "...";
+    <div class="input-group">
+        <label>HEAVY PACKAGES COUNT (AUTO)</label>
+        <input type="number" id="packages" value="0" readonly>
+        
+        <label>ESTIMATED MANUAL LOAD (KG)</label>
+        <input type="number" id="weight" value="0" readonly>
 
-            try {
-                const res = await fetch("https://sala-risk-engine-718760302477.europe-north1.run.app", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        "driving_hours": parseFloat(h), 
-                        "temp": parseFloat(t),
-                        "total_weight": parseFloat(w),
-                        "heavy_packages": parseInt(p)
-                    })
-                });
+        <label>DRIVING HOURS</label>
+        <input type="number" id="hours" value="4.0">
+        
+        <label>TEMP (°C)</label>
+        <input type="number" id="temp" value="-2">
+    </div>
+</div>
 
-                const data = await res.json();
-                const risk = data.risk_index;
+<script>
+    let packageCount = 0;
+    let totalWeight = 0;
+
+    function startScanner() {
+        document.getElementById('reader').style.display = 'block';
+        document.getElementById('scan-btn').innerText = "CAMERA ACTIVE...";
+        
+        const html5QrCode = new Html5Qrcode("reader");
+        html5QrCode.start(
+            { facingMode: "environment" }, 
+            { fps: 10, qrbox: { width: 250, height: 150 } },
+            (decodedText) => {
+                // SUCESSO AO LER CÓDIGO
+                packageCount++;
+                totalWeight += 30; // Simulando que cada pacote bipado tem 30kg
                 
-                riskValueText.innerText = risk + "%";
-
-                if(risk >= 80) {
-                    circle.style.borderColor = "#ff4444";
-                    status.innerText = "HIGH RISK: USE MECHANICAL LIFTING AIDS";
-                    status.style.background = "rgba(255, 68, 68, 0.2)";
-                    status.style.color = "#ff4444";
-                } else if(risk >= 50) {
-                    circle.style.borderColor = "#ffa500";
-                    status.innerText = "CAUTION: ADAPT FOR SLIPPERY CONDITIONS";
-                    status.style.background = "rgba(255, 165, 0, 0.2)";
-                    status.style.color = "#ffa500";
-                } else {
-                    circle.style.borderColor = "#28a745";
-                    status.innerText = "SAFE TO OPERATE";
-                    status.style.background = "rgba(40, 167, 69, 0.2)";
-                    status.style.color = "#28a745";
-                }
-            } catch (error) {
-                riskValueText.innerText = "ERR";
-                status.innerText = "CONNECTION ERROR";
+                document.getElementById('packages').value = packageCount;
+                document.getElementById('weight').value = totalWeight;
+                
+                html5QrCode.stop();
+                document.getElementById('reader').style.display = 'none';
+                document.getElementById('scan-btn').innerText = "[ ] SCAN NEXT PACKAGE";
+                
+                updateRisk(); // Atualiza o risco automaticamente após bipar
             }
-        }
-        window.onload = updateDriverView;
-    </script>
+        ).catch(err => console.error("Erro na câmera", err));
+    }
+
+    async function updateRisk() {
+        const h = document.getElementById('hours').value;
+        const t = document.getElementById('temp').value;
+        const p = document.getElementById('packages').value;
+        const w = document.getElementById('weight').value / 1000; // Converte kg para toneladas para o motor
+
+        try {
+            const res = await fetch("https://sala-risk-engine-718760302477.europe-north1.run.app", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    "driving_hours": parseFloat(h), 
+                    "temp": parseFloat(t),
+                    "total_weight": parseFloat(w),
+                    "heavy_packages": parseInt(p)
+                })
+            });
+            const data = await res.json();
+            const risk = data.risk_index;
+            document.getElementById('risk-value').innerText = risk + "%";
+            
+            const circle = document.getElementById('circle');
+            if(risk >= 80) circle.style.borderColor = "#ff4444";
+            else if(risk >= 50) circle.style.borderColor = "#ffa500";
+            else circle.style.borderColor = "#28a745";
+        } catch (e) { console.error(e); }
+    }
+</script>
 </body>
 </html>
