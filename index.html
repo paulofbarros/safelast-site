@@ -3,122 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SALA • Driver View</title>
+    <title>SALA • Safe-Load Analytics</title>
     <style>
-        body { 
-            background: #0a0e14; 
-            color: #ffffff; 
-            font-family: sans-serif; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh;
-            overflow: hidden;
+        :root {
+            --bg-color: #ffffff;
+            --card-bg: #f0f7ff;
+            --accent-blue-dark: #0056b3;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --border-color: #d1e3f8;
         }
-        .app-container { width: 90%; max-width: 400px; text-align: center; }
-        .risk-circle {
-            width: 180px; height: 180px; border-radius: 50%;
-            border: 15px solid #1a1f26; margin: 20px auto;
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; transition: all 0.4s ease;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.6;
         }
-        #risk-value { font-size: 3.5rem; font-weight: 900; margin: 0; }
-        .input-group { margin-top: 20px; text-align: left; }
-        label { display: block; color: #888; font-size: 0.7rem; margin-bottom: 5px; font-weight: bold; }
-        input { 
-            background: #1a1f26; border: 1px solid #333; color: white; 
-            padding: 12px; width: 100%; border-radius: 10px; 
-            font-size: 1.1rem; text-align: center; margin-bottom: 15px;
-            box-sizing: border-box;
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
         }
-        button { 
-            background: #007bff; color: white; border: none; 
-            padding: 18px; width: 100%; border-radius: 12px; 
-            font-size: 1.1rem; font-weight: bold; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
         }
-        button:active { transform: scale(0.98); }
-        .status-msg { margin-top: 20px; font-weight: bold; padding: 12px; border-radius: 8px; font-size: 0.9rem; }
+
+        h1 { font-size: 2.8rem; margin-bottom: 5px; font-weight: 800; }
+        .subtitle { font-size: 1.25rem; color: var(--accent-blue-dark); font-weight: 500; }
+
+        .nav-portal {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .nav-button {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            background-color: var(--accent-blue-dark);
+            color: white !important;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+
+        .nav-button:hover { opacity: 0.9; }
+        .nav-button.driver { background-color: #1a1a1a; }
+        .nav-button.secondary { background-color: #f0f0f0; color: #333 !important; border: 1px solid #ddd; }
+
+        section { margin-bottom: 60px; }
+        h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; }
+
+        .algorithm-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .formula { font-size: 2.2rem; color: var(--accent-blue-dark); font-weight: 800; }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaeaea;
+            padding-top: 40px;
+            color: #888;
+        }
+
+        @media (max-width: 600px) {
+            .nav-portal { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <p style="color: #007bff; font-weight: bold; letter-spacing: 2px;">SALA • DRIVER MODE</p>
-        
-        <div class="risk-circle" id="circle">
-            <p id="risk-value">--%</p>
-            <span style="font-size: 0.7rem; color: #888;">RISK INDEX</span>
-        </div>
+    <div class="container">
+        <header>
+            <h1>SALA • SAFE-LOAD ANALYTICS</h1>
+            <p class="subtitle">Predictive Intelligence for Norwegian Logistics</p>
+            <p>www.safelast.no</p>
+        </header>
 
-        <div id="status" class="status-msg">READY FOR ANALYSIS</div>
+        <nav class="nav-portal">
+            <a href="drive.html" class="nav-button driver">DRIVER APP</a>
+            <a href="dashboard.html" class="nav-button">MANAGER DASHBOARD</a>
+            <a href="https://paulofbarros.github.io/safelast-site/company.html" class="nav-button secondary">COMPANY ACCESS</a>
+        </nav>
 
-        <div class="input-group">
-            <label>DRIVING HOURS</label>
-            <input type="number" id="hours" value="4.5" step="0.1">
+        <section>
+            <h2>Overview</h2>
+            <p>SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).</p>
+        </section>
+
+        <section>
+            <h2>The Core Algorithm</h2>
+            <div class="algorithm-box">
+                <p>Ergonomic Risk Index Calculation:</p>
+                <div class="formula">Ri = (Sf × Lw) + (Fi × Th)</div>
+            </div>
+        </section>
+
+        <section style="background: #f9f9f9; padding: 30px; border-radius: 12px; border: 1px solid #eee; margin-top: 40px;">
+            <h2 style="color: #0056b3; border-left: 4px solid #0056b3; padding-left: 15px;">The Science Behind SALA</h2>
             
-            <label>TEMPERATURE (°C)</label>
-            <input type="number" id="temp" value="-2">
+            <p><strong>Biomechanical Surface Factor (Sf):</strong> 
+            Operating on compressed snow or ice requires up to 80% more stabilizer muscle activation. We apply a <strong>1.8x multiplier</strong> to account for increased torque on the lumbar region (L5/S1) during unstable conditions.</p>
             
-            <button onclick="updateDriverView()">CHECK SAFETY STATUS</button>
-        </div>
-        
-        <a href="index.html" style="color: #444; text-decoration: none; display: block; margin-top: 25px; font-size: 0.8rem;">← Back to Portal</a>
+            <p><strong>Neuromuscular Fatigue (Fi):</strong> 
+            Risk scales exponentially after <strong>6h 30m</strong> of active duty. Vibration-induced fatigue leads to delayed motor response, making manual load adjustments significantly more hazardous.</p>
+            
+            <p><strong>Regulatory Compliance (Arbeidsmiljøloven § 4-4):</strong> 
+            SALA is designed to fulfill the Norwegian Working Environment Act requirements, providing data-driven evidence for the <em>Verneombud</em> (Safety Delegate) to mandate mechanical assistance.</p>
+        </section>
+
+        <footer>
+            <p>Author: <strong>Paulo Fernando De Barros</strong> | Larvik, Norway</p>
+            <p>&copy; 2026 SALA - Safe-Load Analytics. All rights reserved.</p>
+        </footer>
     </div>
 
-    <script>
-        async function updateDriverView() {
-            const h = document.getElementById('hours').value;
-            const t = document.getElementById('temp').value;
-            const riskValueText = document.getElementById('risk-value');
-            const circle = document.getElementById('circle');
-            const status = document.getElementById('status');
-
-            riskValueText.innerText = "...";
-            status.innerText = "CALCULATING...";
-
-            try {
-                const res = await fetch("https://sala-risk-engine-718760302477.europe-north1.run.app", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ "driving_hours": parseFloat(h), "temp": parseFloat(t) })
-                });
-
-                const data = await res.json();
-                const risk = data.risk_index;
-                
-                riskValueText.innerText = risk + "%";
-
-                if(risk >= 80) {
-                    circle.style.borderColor = "#ff4444";
-                    circle.style.boxShadow = "0 0 20px rgba(255, 68, 68, 0.4)";
-                    status.innerText = "HIGH RISK: USE MECHANICAL LIFTING AIDS"; // Foco no auxílio à carga
-                    status.style.background = "rgba(255, 68, 68, 0.2)";
-                    status.style.color = "#ff4444";
-                } else if(risk >= 50) {
-                    circle.style.borderColor = "#ffa500";
-                    circle.style.boxShadow = "0 0 20px rgba(255, 165, 0, 0.4)";
-                    status.innerText = "CAUTION: ADAPT FOR SLIPPERY CONDITIONS"; 
-                    status.style.background = "rgba(255, 165, 0, 0.2)";
-                    status.style.color = "#ffa500";
-                } else {
-                    circle.style.borderColor = "#28a745";
-                    circle.style.boxShadow = "0 0 20px rgba(40, 167, 69, 0.4)";
-                    status.innerText = "LOW RISK: PROCEED WITH STANDARD CARE";
-                    status.style.background = "rgba(40, 167, 69, 0.2)";
-                    status.style.color = "#28a745";
-                }
-            } catch (error) {
-                riskValueText.innerText = "ERR";
-                status.innerText = "CONNECTION ERROR";
-                console.error(error);
-            }
-        }
-        
-        // Inicia com os valores padrão ao carregar
-        window.onload = updateDriverView;
-    </script>
 </body>
 </html>
