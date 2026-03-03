@@ -94,19 +94,19 @@
                 if(risk >= 80) {
                     circle.style.borderColor = "#ff4444";
                     circle.style.boxShadow = "0 0 20px rgba(255, 68, 68, 0.4)";
-                    status.innerText = "STOP: MECHANICAL ASSISTANCE REQUIRED";
+                    status.innerText = "HIGH RISK: USE MECHANICAL LIFTING AIDS"; // Foco no auxílio à carga
                     status.style.background = "rgba(255, 68, 68, 0.2)";
                     status.style.color = "#ff4444";
                 } else if(risk >= 50) {
                     circle.style.borderColor = "#ffa500";
                     circle.style.boxShadow = "0 0 20px rgba(255, 165, 0, 0.4)";
-                    status.innerText = "CAUTION: RISK LEVEL MEDIUM";
+                    status.innerText = "CAUTION: ADAPT FOR SLIPPERY CONDITIONS"; 
                     status.style.background = "rgba(255, 165, 0, 0.2)";
                     status.style.color = "#ffa500";
                 } else {
                     circle.style.borderColor = "#28a745";
                     circle.style.boxShadow = "0 0 20px rgba(40, 167, 69, 0.4)";
-                    status.innerText = "SAFE TO OPERATE";
+                    status.innerText = "LOW RISK: PROCEED WITH STANDARD CARE";
                     status.style.background = "rgba(40, 167, 69, 0.2)";
                     status.style.color = "#28a745";
                 }
