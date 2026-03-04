@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALA • Teknisk Notat 01-A</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; max-width: 700px; margin: 40px auto; padding: 20px; background: #fdfdfd; }
+        .doc-box { border: 1px solid #ddd; padding: 40px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .header { border-bottom: 2px solid #002b5c; margin-bottom: 30px; padding-bottom: 10px; }
+        .id-tag { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { color: #002b5c; font-size: 1.5rem; margin: 5px 0; }
+        h2 { color: #0056b3; font-size: 1.1rem; margin-top: 25px; }
+        .formula { background: #f0f4f8; padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0; }
+        .footer-nav { margin-top: 50px; font-size: 0.8rem; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="doc-box">
+    <div class="header">
+        <span class="id-tag">Referanse: BIOM-FATIGUE-01A</span>
+        <h1>Teknisk Notat: Initialisering av Grunnleggende Tretthet</h1>
+    </div>
+
+    <p><strong>Emne:</strong> Begrunnelse for 2,0-timers standard initialisering i førervisningen.</p>
+    
+    <h2>1. "Kaldstart"-feilslutningen</h2>
+    <p>Innen yrkesbiomekanikk eksisterer en "nullrisiko"-tilstand kun etter en periode med restituerende søvn. For logistikkpersonell starter den manuelle håndteringsfasen (lasting/lossing) aldri på 0 % tretthet. Grunnlinjen på 2,0 timer tar hensyn til <strong>metabolsk belastning før oppgaveoppstart</strong>.</p>
+
+    <h2>2. Helkroppsvibrasjoner (WBV)</h2>
+    <p>Kjøring i 1 til 2 timer for å nå et leveringspunkt i Larvik eller den nordiske korridoren utsetter ryggraden for konstante lavfrekvente vibrasjoner. I henhold til <em>ISO 2631-1</em> forårsaker disse vibrasjonene:</p>
+    <ul>
+        <li>Mikro-hevelser i mellomvirvelskivene.</li>
+        <li>Redusert muskeltonus i <em>multifidus</em> (stabiliseringsmuskulatur).</li>
+    </ul>
+
+    <h2>3. Sikkerhetsfaktor (Sf) multiplikator</h2>
+    <div class="formula">
+        Initial_Ri = (WBV_Eksponering * 0.15) + (Metabolsk_Basalrate)
+    </div>
+    <p>Ved å starte appen på 2,0 timer sikres det at <strong>Risikoindeksen (Ri)</strong> beregnes med en konservativ sikkerhetsmargin. Dette forhindrer "første-løft-skade"-syndromet, der en sjåfør føler seg uthvilt, men utfører et tungt løft med "kalde" sener preget av vibrasjonstretthet.</p>
+
+    <h2>4. Ledelsesmessig oppfølging</h2>
+    <p>Ledere bør tolke en innledende Ri over 0 % som en kalibrert sikkerhetsbuffer. Dette sikrer at når sjåføren utfører leveringer med høy frekvens, er den kumulative risikokurven nøyaktig og ikke underestimert.</p>
+
+    <div class="footer-nav">
+        <a href="javascript:history.back()" style="color: #0056b3; text-decoration: none;">← Gå tilbake til forrige side</a>
+    </div>
+</div>
+
+</body>
+</html>
