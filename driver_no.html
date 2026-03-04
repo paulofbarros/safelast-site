@@ -12,6 +12,7 @@
         #risk-value { font-size: 3rem; font-weight: 900; margin: 0; }
         .input-group { margin-top: 15px; text-align: left; }
         
+        /* Ajuste no Label para incluir o link técnico */
         .label-wrapper { display: flex; justify-content: space-between; align-items: center; }
         label { display: block; color: #888; font-size: 0.65rem; margin-bottom: 4px; font-weight: bold; letter-spacing: 1px; }
         .info-btn { color: #007bff; font-size: 0.7rem; text-decoration: none; cursor: pointer; }
@@ -28,10 +29,12 @@
         .scientific-footer p { font-size: 0.7rem; line-height: 1.4; color: #ccc; margin-bottom: 10px; }
         .keyword { color: #ffffff; font-weight: bold; }
 
+        /* Navigation */
         .nav-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #1a1f26; }
         .manual-link { color: #007bff; text-decoration: none; font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 15px; }
         .exit-link { color: #555; text-decoration: none; font-size: 0.75rem; display: block; }
 
+        /* Modal / Nota Técnica Overlay */
         #tech-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; padding: 20px; box-sizing: border-box; overflow-y: auto; }
         .modal-content { background: #1a1f26; padding: 25px; border-radius: 15px; max-width: 400px; margin: 40px auto; text-align: left; border: 1px solid #007bff; }
         .modal-content h2 { color: #007bff; font-size: 1.1rem; margin-top: 0; }
@@ -43,10 +46,10 @@
 
     <div id="tech-modal">
         <div class="modal-content">
-            <h2>Teknisk Notat: Basistretthet</h2>
+            <h2>Teknisk notat: Basistretthet</h2>
             <p><strong>Hvorfor starte med 2,0 timer?</strong></p>
             <p>Sjåfører utsettes for <strong>helkroppsvibrasjoner (WBV)</strong> under transport. I henhold til ISO 2631-1 forårsaker 2 timers kjøring mikro-hevelser i mellomvirvelskivene og redusert muskelstabilitet.</p>
-            <p>SALA initialiseres med 2,0t som en <strong>sikkerhetsmargin</strong> for å ta hensyn til akkumulert metabolsk tretthet før ditt første løft.</p>
+            <p>SALA initialiserer med 2,0t som en <strong>sikkerhetsmargin</strong> for å ta hensyn til denne akkumulerte metabolske trettheten før ditt første løft.</p>
             <button class="close-modal" onclick="toggleModal()">FORSTÅTT</button>
         </div>
     </div>
@@ -74,10 +77,10 @@
             <label>LASTVEKT (TONN)</label>
             <input type="number" id="weight" value="0">
 
-            <label>TUNGE PAKKER (> 25 KG)</label>
+            <label>TUNGE PAKKER (> 25KG)</label>
             <input type="number" id="packages_heavy" value="0">
 
-            <label>LETTE PAKKER (< 25 KG)</label>
+            <label>LETTE PAKKER (< 25KG)</label>
             <input type="number" id="packages_light" value="0">
             
             <button class="btn-update" onclick="updateDriverView()">OPPDATER STATUS</button>
@@ -88,14 +91,14 @@
         <button class="btn-reset" onclick="resetCounters()">RESTART DATA</button>
 
         <div class="scientific-footer">
-            <h3>SALA Vitenskapelig Grunnlag</h3>
+            <h3>SALA Vitenskapelig fundament</h3>
             <p>Risikoindeksen beregner <span class="keyword">individuell biomekanisk kapasitet</span>, og justerer fysisk belastning basert på <span class="keyword">regelen for kroppsmasseprosent</span>.</p>
             <p>Vektet av <span class="keyword">proporsjonalitetsfaktoren</span> mellom treghetsmasse og nyttelast.</p>
         </div>
 
         <div class="nav-links">
-            <a href="driver_manual_no.html" class="manual-link">📖 Trenger du hjelp? Åpne brukerveiledning</a>
-            <a href="index.html" class="exit-link">← Gå tilbake til portalen</a>
+            <a href="driver_manual_no.html" class="manual-link">📖 Trenger du hjelp? Åpne brukermanualen</a>
+            <a href="index.html" class="exit-link">← Gå til portalen</a>
         </div>
     </div>
 
@@ -110,7 +113,7 @@
         async function fetchWeather() {
             const status = document.getElementById('status');
             const tempInput = document.getElementById('temp');
-            status.innerText = "SØKER POSISJON...";
+            status.innerText = "DETEKTERER POSISJON...";
 
             const getTemp = async (lat, lon) => {
                 try {
@@ -120,7 +123,7 @@
                     status.innerText = "VÆRDATA SYNKRONISERT";
                     updateDriverView();
                 } catch (e) {
-                    status.innerText = "FEIL VED SYNKRONISERING";
+                    status.innerText = "FEIL VED VÆRSYNKRONISERING";
                 }
             };
 
@@ -209,12 +212,12 @@
                     statusMsg.style.color = "#ffa500";
                 } else {
                     circle.style.borderColor = "#28a745";
-                    statusMsg.innerText = "TRYGT Å JOBBE";
+                    statusMsg.innerText = "TRYGT Å OPERERE";
                     statusMsg.style.color = "#28a745";
                 }
             } catch (e) { 
                 riskValueText.innerText = "FEIL"; 
-                statusMsg.innerText = "SKY-API OFFLINE";
+                statusMsg.innerText = "CLOUD API OFFLINE";
                 statusMsg.style.color = "white";
             }
         }
