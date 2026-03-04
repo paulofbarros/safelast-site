@@ -10,13 +10,16 @@
             --card-bg: #f0f7ff;
             --accent-blue-dark: #0056b3;
             --text-primary: #1a1a1a;
+            --border-color: #d1e3f8;
             --btn-black: #1a1a1a;
         }
 
         body {
-            font-family: -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
+            color: var(--text-primary);
             margin: 0;
+            line-height: 1.6;
             display: flex;
             justify-content: center;
         }
@@ -30,41 +33,48 @@
 
         /* Bandeiras Centralizadas */
         .lang-nav-central { 
-            display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            margin-bottom: 30px;
         }
         .lang-nav-central span { cursor: pointer; font-size: 1.8rem; opacity: 0.4; transition: 0.3s; }
-        .lang-nav-central span.active { opacity: 1; transform: scale(1.2); border-bottom: 2px solid var(--accent-blue-dark); }
+        .lang-nav-central span.active { opacity: 1; transform: scale(1.1); border-bottom: 3px solid var(--accent-blue-dark); }
 
-        header { border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
-        h1 { font-size: 2.2rem; margin-bottom: 5px; font-weight: 800; letter-spacing: -1px; }
-        .subtitle { font-size: 1.1rem; color: var(--accent-blue-dark); font-weight: 500; margin-top: 0; }
+        header {
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
 
-        /* AREA DO SCANNER BIOMECÂNICO - Redimensionada e com Efeito */
+        h1 { font-size: 2.8rem; margin-bottom: 5px; font-weight: 800; }
+        .subtitle { font-size: 1.25rem; color: var(--accent-blue-dark); font-weight: 500; }
+
+        /* AREA DO SCANNER - Transparente e Controlada */
         .scanner-container {
             position: relative;
-            width: 180px; /* Tamanho controlado */
-            height: 280px;
+            width: 200px; 
+            height: 300px;
             margin: 20px auto;
-            background: #f9f9f9;
-            border-radius: 20px;
+            background: transparent;
             overflow: hidden;
-            border: 1px solid #e0eefb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .scanner-container img {
-            width: 100%;
-            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
-            opacity: 0.8;
         }
-        /* Linha de Scanner Animada */
         .scanner-line {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: rgba(0, 86, 179, 0.6);
-            box-shadow: 0 0 15px 2px rgba(0, 86, 179, 0.8);
+            height: 3px;
+            background: rgba(0, 86, 179, 0.7);
+            box-shadow: 0 0 12px 2px rgba(0, 86, 179, 0.5);
             animation: scan 3s infinite linear;
             z-index: 10;
         }
@@ -77,29 +87,51 @@
         .nav-portal {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 30px 0;
+            gap: 15px;
+            margin: 30px 0 40px 0;
         }
+
         .nav-button {
-            padding: 15px 5px;
+            display: block;
+            text-align: center;
+            padding: 15px;
             background-color: var(--accent-blue-dark);
             color: white !important;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
         }
+
         .nav-button.driver { background-color: var(--btn-black); }
+        .nav-button:hover { opacity: 0.9; }
         .nav-button.secondary { background-color: #f0f0f0; color: #333 !important; border: 1px solid #ddd; }
 
-        section { margin-bottom: 40px; text-align: left; }
-        h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; font-size: 1.2rem; }
-        .algorithm-box { background: var(--card-bg); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid var(--border-color); }
-        .formula { font-size: 1.8rem; color: var(--accent-blue-dark); font-weight: 800; }
-        
-        footer { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 20px; }
+        section { margin-bottom: 50px; text-align: left; }
+        h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; }
 
-        @media (max-width: 600px) { .nav-portal { grid-template-columns: 1fr; } }
+        .algorithm-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .formula { font-size: 2.2rem; color: var(--accent-blue-dark); font-weight: 800; }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaeaea;
+            padding-top: 40px;
+            color: #888;
+        }
+
+        @media (max-width: 600px) {
+            .nav-portal { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -114,11 +146,12 @@
         <header>
             <h1>SALA • SAFE-LOAD ANALYTICS</h1>
             <p id="tagline" class="subtitle">Predictive Intelligence for Norwegian Logistics</p>
+            <p>www.safelast.no</p>
         </header>
 
         <div class="scanner-container">
             <div class="scanner-line"></div>
-            <img src="sala_body.png" alt="Biomechanical Body Scan">
+            <img src="sala_body.png" alt="SALA Biomechanical Scanner">
         </div>
 
         <nav class="nav-portal">
@@ -129,19 +162,20 @@
 
         <section>
             <h2 id="h-overview">Overview</h2>
-            <p id="p-overview" style="font-size: 0.9rem;">SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector.</p>
+            <p id="p-overview">SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).</p>
         </section>
 
         <section>
             <h2 id="h-algorithm">The Core Algorithm</h2>
             <div class="algorithm-box">
+                <p id="p-algorithm">Ergonomic Risk Index Calculation:</p>
                 <div class="formula">Ri = (Sf × Lw) + (Fi × Th)</div>
             </div>
         </section>
 
         <footer>
             <p>Author: <strong>Paulo Fernando De Barros</strong> | Larvik, Norway</p>
-            <p>&copy; 2026 SALA - Safe-Load Analytics.</p>
+            <p>&copy; 2026 SALA - Safe-Load Analytics. All rights reserved.</p>
         </footer>
     </div>
 
@@ -153,8 +187,9 @@
                 dashboard: "LIVE DASHBOARD",
                 company: "COMPANY ACCESS",
                 overviewH: "Overview",
-                overviewP: "SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector.",
-                algorithmH: "The Core Algorithm"
+                overviewP: "SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).",
+                algorithmH: "The Core Algorithm",
+                algorithmP: "Ergonomic Risk Index Calculation:"
             },
             no: {
                 tagline: "Prediktiv Intelligens for Norsk Logistikk",
@@ -162,14 +197,16 @@
                 dashboard: "SANNTIDSDASHBOARD",
                 company: "BEDRIFTSTILGANG",
                 overviewH: "Oversikt",
-                overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren.",
-                algorithmH: "Kjernealgoritmen"
+                overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren, med fokus på å redusere sykefravær.",
+                algorithmH: "Kjernealgoritmen",
+                algorithmP: "Beregning av ergonomisk risikoindeks:"
             }
         };
 
         function translateTo(lang) {
             document.querySelectorAll('.lang-nav-central span').forEach(s => s.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
+
             document.getElementById('tagline').innerText = translations[lang].tagline;
             document.getElementById('btn-driver').innerText = translations[lang].driver;
             document.getElementById('btn-dashboard').innerText = translations[lang].dashboard;
@@ -177,6 +214,7 @@
             document.getElementById('h-overview').innerText = translations[lang].overviewH;
             document.getElementById('p-overview').innerText = translations[lang].overviewP;
             document.getElementById('h-algorithm').innerText = translations[lang].algorithmH;
+            document.getElementById('p-algorithm').innerText = translations[lang].algorithmP;
         }
     </script>
 </body>
