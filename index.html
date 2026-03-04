@@ -39,11 +39,11 @@
         h1 { font-size: 2.2rem; margin-bottom: 5px; font-weight: 800; color: var(--text-primary); }
         .subtitle { font-size: 1.1rem; color: var(--accent-blue-dark); font-weight: 500; margin-top: 0; }
 
-        /* --- CONTÊINER DO BIO-SCAN (COM A IMAGEM REAL) --- */
+        /* --- CONTÊINER DO BIO-SCAN (COM A IMAGEM REAL E TAMANHO REDUZIDO) --- */
         .bio-scan-container {
             position: relative;
             width: 100%;
-            max-width: 300px; /* Mantém um bom tamanho */
+            max-width: 75px; /* Reduzido para 1/4 do tamanho anterior (75px) */
             margin: 0 auto 40px auto;
             display: flex;
             justify-content: center;
@@ -51,11 +51,11 @@
             background: radial-gradient(circle, rgba(0,242,255,0.05) 0%, rgba(255,255,255,0) 70%);
             border-radius: 12px;
             overflow: hidden; /* Corta o laser se sair do contêiner */
-            padding: 10px;
+            padding: 5px; /* Padding reduzido para combinar com o novo tamanho */
             box-sizing: border-box;
         }
 
-        /* Imagem Anatômica Carregada (A imagem real que você mandou) */
+        /* Imagem Anatômica Carregada (sala_body.png) */
         .anatomy-image {
             width: 100%;
             height: auto;
@@ -63,7 +63,7 @@
             position: relative;
             z-index: 1; /* Abaixo do laser */
             opacity: 0.95;
-            filter: drop-shadow(0 0 5px rgba(0, 86, 179, 0.2));
+            filter: drop-shadow(0 0 3px rgba(0, 86, 179, 0.2)); /* Brilho mais sutil */
         }
 
         /* O Feixe de Laser Azul Profundo */
@@ -71,9 +71,9 @@
             position: absolute;
             left: -10%; /* Estende um pouco para fora para cobertura total */
             width: 120%;
-            height: 3px;
+            height: 2px; /* Espessura reduzida para combinar com o novo tamanho */
             background: var(--scan-blue);
-            box-shadow: 0 0 10px var(--scan-blue), 0 0 20px var(--scan-blue), 0 0 30px var(--scan-blue);
+            box-shadow: 0 0 8px var(--scan-blue), 0 0 16px var(--scan-blue), 0 0 24px var(--scan-blue); /* Brilho reduzido */
             z-index: 2; /* Acima da imagem */
             animation: scanMove 4s infinite ease-in-out;
             border-radius: 50%; /* Arredonda as pontas para suavidade */
