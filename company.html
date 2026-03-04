@@ -116,7 +116,6 @@
         .at-risk { background: #fee2e2; color: #991b1b; }
         .safe { background: #dcfce7; color: #166534; }
 
-        /* MAP SETTINGS */
         #map-container {
             width: 100%;
             height: 650px; 
@@ -132,7 +131,6 @@
             border-bottom: 1px solid var(--accent-blue);
         }
 
-        /* MANUAL SECTION STYLING */
         .manual-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media (min-width: 700px) { .manual-grid { grid-template-columns: 1fr 1fr; } }
         .manual-card { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; transition: 0.3s; cursor: pointer; }
@@ -251,7 +249,8 @@
                 <h4>❄️ Winter Operations Protocol</h4>
                 <p>Specific safety procedures for operations on icy or snowy surfaces within the Nordic region.</p>
                 <div style="margin-top:10px;">
-                    <a href="winter_protocol.html" target="_blank" class="law-link" style="font-size:0.8rem;">English</a>
+                    <a href="winter_protocol.html" target="_blank" class="law-link" style="font-size:0.8rem;">English</a> | 
+                    <a href="winter_protocol_no.html" target="_blank" class="law-link" style="font-size:0.8rem;">Norsk</a>
                 </div>
             </div>
             <div class="manual-card">
@@ -302,7 +301,6 @@
         const target = document.getElementById(sectionId);
         if(target) target.classList.add('active');
         
-        // Handle the active class for the nav item correctly
         if (window.event && window.event.currentTarget) {
             window.event.currentTarget.classList.add('active');
         }
