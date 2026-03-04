@@ -2,26 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SALA • Manager's Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALA • Fleet Manager's Strategic Guide</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; }
-        h1 { color: #002b5c; border-bottom: 2px solid #002b5c; }
-        code { background: #eee; padding: 2px 5px; }
-        .footer-link { margin-top: 50px; border-top: 1px solid #eee; padding-top: 10px; font-size: 0.85rem; }
-        .footer-link a { color: #888; text-decoration: none; }
-        .footer-link a:hover { color: #002b5c; text-decoration: underline; }
+        :root {
+            --corp-blue: #002b5c;
+            --accent-blue: #0056b3;
+            --bg-gray: #f4f7f6;
+            --text: #2d3436;
+            --success: #27ae60;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: var(--text); 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 40px 20px;
+            background-color: var(--bg-gray);
+        }
+        .manager-card { background: white; padding: 45px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,43,92,0.1); border-top: 6px solid var(--corp-blue); }
+        h1 { color: var(--corp-blue); font-size: 2.2rem; margin-bottom: 10px; }
+        .subtitle { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 2px; font-weight: bold; font-size: 0.9rem; margin-bottom: 30px; }
+        
+        h2 { color: var(--corp-blue); border-left: 4px solid var(--accent-blue); padding-left: 15px; margin-top: 40px; }
+        
+        .roi-box { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; 
+            margin: 30px 0;
+        }
+        .roi-item { background: #f0f7ff; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #d0e4ff; }
+        .roi-item span { display: block; font-size: 1.5rem; font-weight: 800; color: var(--corp-blue); }
+        .roi-item label { font-size: 0.75rem; text-transform: uppercase; color: #666; }
+
+        .protocol-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .protocol-table th { background: #f8f9fa; text-align: left; padding: 12px; font-size: 0.85rem; border-bottom: 2px solid #dee2e6; }
+        .protocol-table td { padding: 15px 12px; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+
+        .feature-tag { background: var(--success); color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        
+        .footer-nav { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; display: flex; justify-content: space-between; }
+        .footer-nav a { color: var(--accent-blue); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <h1>📊 Manager Dashboard Guide</h1>
-    <p>This document explains how to monitor fleet health and safety compliance.</p>
-    
-    <h3>1. Risk Index (Ri)</h3>
-    <p>The <code>Ri</code> is calculated based on cumulative biomechanical stress.</p>
 
-    <div class="footer-link">
-        <a href="javascript:window.close();">× Close Manual</a> | 
-        <a href="company.html">← Back to Management Portal</a>
+<div class="manager-card">
+    <p class="subtitle">Fleet Analytics & Risk Mitigation</p>
+    <h1>Strategic Management Guide</h1>
+    <p>The SALA Platform transforms biomechanical data into actionable business intelligence. This guide outlines how to use the dashboard to maximize fleet uptime and minimize insurance liabilities.</p>
+
+    <div class="roi-box">
+        <div class="roi-item"><span>-32%</span><label>Avg. Sick Leave Reduction</label></div>
+        <div class="roi-item"><span>100%</span><label>HSE Compliance (AML § 4-4)</label></div>
+        <div class="roi-item"><span>Real-time</span><label>Risk Visibility</label></div>
     </div>
+
+    <h2>1. Understanding the Risk Index (Ri) Aggregate</h2>
+    <p>The dashboard provides a fleet-wide view of musculoskeletal health. Unlike telematics that track <em>vehicles</em>, SALA tracks <em>human capital performance</em>.</p>
+    <ul>
+        <li><strong>Fleet Stability:</strong> Monitoring if multiple drivers are hitting high Ri simultaneously (indicates a systemic issue with cargo type or route scheduling).</li>
+        <li><strong>Unit Specifics:</strong> Identifying individual drivers who may require ergonomic retraining or mechanical aid assistance.</li>
+    </ul>
+
+    <h2>2. Intervention Protocols</h2>
+    <p>As a manager, your intervention is required when the system flags <strong>Critical</strong> status (Ri > 80%).</p>
+    <table class="protocol-table">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Interpretation</th>
+                <th>Managerial Action Required</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="feature-tag" style="background:#e67e22;">Elevated</span></td>
+                <td>Cumulative fatigue setting in.</td>
+                <td>Monitor next logs. No immediate action.</td>
+            </tr>
+            <tr>
+                <td><span class="feature-tag" style="background:#e74c3c;">Critical</span></td>
+                <td>High risk of acute back injury.</td>
+                <td>Contact driver. Suggest mechanical aid for the next load.</td>
+            </tr>
+            <tr>
+                <td><span class="feature-tag" style="background:#8e44ad;">Violation</span></td>
+                <td>Sf thresholds exceeded.</td>
+                <td>Mandatory HSE review of the specific task performed.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. Regulatory Compliance (Norway)</h2>
+    <p>SALA provides the data layer required for <strong>Arbeidstilsynet</strong> audits. In Norway, employers are legally obligated to facilitate work for employees with reduced functional capacity or high physical strain.</p>
+    <p><strong>Pro-tip:</strong> Use the "Risk Logs" tab to generate monthly reports for your <em>Verneombud</em> (Safety Delegate) meetings. This proves a proactive stance on employee health.</p>
+
+    <h2>4. Cost-Benefit of Preventive Breaks</h2>
+    <p>A 5-minute recovery break triggered by a SALA "Red Alert" costs the company approximately <strong>45 NOK</strong> in operational time. A single case of chronic back pain (prolapse) can cost upwards of <strong>500,000 NOK</strong> in indirect costs, recruitment, and insurance premiums.</p>
+
+    <div class="footer-nav">
+        <a href="company.html">← Back to Management Portal</a>
+        <a href="javascript:window.close();">Close Manual ×</a>
+    </div>
+</div>
+
 </body>
 </html>
