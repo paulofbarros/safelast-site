@@ -15,7 +15,6 @@
             --text-main: #1a1a1a;
         }
 
-        /* [Mantendo seu CSS original aqui...] */
         * { box-sizing: border-box; }
 
         body { 
@@ -107,7 +106,7 @@
         
         .card-panel { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; }
         
-        /* NOVO: Estilos para o painel de Configurações */
+        /* Configurações */
         .config-group { margin-bottom: 25px; }
         .config-label { display: block; font-weight: 700; color: var(--corp-blue); margin-bottom: 10px; font-size: 0.95rem; }
         .config-select { 
@@ -254,6 +253,14 @@
                 Define global alert thresholds and regional sensitivity for all active units in the network.
             </p>
 
+            <div style="background: #fff9e6; border-left: 4px solid #ffcc00; padding: 15px; margin-bottom: 25px; font-size: 0.85rem; border-radius: 0 8px 8px 0;">
+                <strong style="color: #856404;">Technical Note: Biomechanical Thresholds</strong><br>
+                The $R_i$ threshold defines the transition from <em>manual handling</em> to <em>mechanical-only operations</em>. 
+                According to SALA predictive models, an index above <strong>85%</strong> indicates that musculoskeletal stabilizers (L5/S1 region) 
+                can no longer compensate for surface instability ($S_f$) and neuromuscular fatigue ($F_i$). 
+                <strong>Mandatory mechanical assistance</strong> is triggered to maintain compliance with <em>Arbeidsmiljøloven § 4-4</em>.
+            </div>
+
             <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
 
             <div class="config-group">
@@ -270,10 +277,10 @@
             </div>
 
             <div class="config-group">
-                <label class="config-label">Global Risk Threshold ($R_i$)</label>
+                <label class="config-label">Critical Risk Threshold ($R_i$)</label>
                 <div style="display: flex; align-items: center; gap: 20px;">
-                    <input type="range" min="1" max="100" value="85" style="flex-grow: 1; max-width: 400px;">
-                    <span style="font-weight: 800; color: var(--warning-red);">85%</span>
+                    <input type="range" min="50" max="95" value="85" id="thresholdRange" style="flex-grow: 1; max-width: 400px;">
+                    <span id="thresholdValue" style="font-weight: 800; color: var(--warning-red); font-size: 1.2rem;">85%</span>
                 </div>
                 <span class="config-help">
                     Determines the point at which the Driver App triggers a "Mechanical Assistance Required" alert.
@@ -322,6 +329,18 @@
                 map.invalidateSize(); 
             }, 100);
         }
+    }
+
+    // INTERATIVIDADE DO THRESHOLD
+    const range = document.getElementById('thresholdRange');
+    const valueDisplay = document.getElementById('thresholdValue');
+
+    if(range) {
+        range.addEventListener('input', () => {
+            valueDisplay.innerText = range.value + '%';
+            // Cor muda conforme o risco: Laranja para moderado, Vermelho para crítico
+            valueDisplay.style.color = range.value > 80 ? '#dc3545' : '#e67e22';
+        });
     }
 </script>
 
