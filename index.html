@@ -10,112 +10,96 @@
             --card-bg: #f0f7ff;
             --accent-blue-dark: #0056b3;
             --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --border-color: #d1e3f8;
             --btn-black: #1a1a1a;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: -apple-system, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-primary);
             margin: 0;
-            line-height: 1.6;
+            display: flex;
+            justify-content: center;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            width: 100%;
             padding: 40px 20px;
             text-align: center;
         }
 
-        /* Bandeiras Centralizadas e Visíveis */
+        /* Bandeiras Centralizadas */
         .lang-nav-central { 
-            display: flex; 
-            justify-content: center; 
-            gap: 25px; 
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 50px;
-            width: fit-content;
-            margin: 0 auto 30px auto;
-            border: 1px solid #eee;
+            display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;
         }
-        .lang-nav-central span { cursor: pointer; font-size: 1.8rem; transition: 0.3s; filter: grayscale(40%); }
-        .lang-nav-central span:hover { filter: grayscale(0%); transform: scale(1.1); }
-        .lang-nav-central span.active { filter: grayscale(0%); border-bottom: 3px solid var(--accent-blue-dark); }
+        .lang-nav-central span { cursor: pointer; font-size: 1.8rem; opacity: 0.4; transition: 0.3s; }
+        .lang-nav-central span.active { opacity: 1; transform: scale(1.2); border-bottom: 2px solid var(--accent-blue-dark); }
 
-        header {
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 30px;
-            margin-bottom: 30px;
+        header { border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+        h1 { font-size: 2.2rem; margin-bottom: 5px; font-weight: 800; letter-spacing: -1px; }
+        .subtitle { font-size: 1.1rem; color: var(--accent-blue-dark); font-weight: 500; margin-top: 0; }
+
+        /* AREA DO SCANNER BIOMECÂNICO - Redimensionada e com Efeito */
+        .scanner-container {
+            position: relative;
+            width: 180px; /* Tamanho controlado */
+            height: 280px;
+            margin: 20px auto;
+            background: #f9f9f9;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e0eefb;
         }
-
-        h1 { font-size: 2.8rem; margin-bottom: 5px; font-weight: 800; }
-        .subtitle { font-size: 1.25rem; color: var(--accent-blue-dark); font-weight: 500; }
-
-        /* Silhueta Biomecânica - Corrigido para sala_body.png */
-        .biomech-visual {
-            margin: 40px 0;
-            display: flex;
-            justify-content: center;
+        .scanner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.8;
         }
-        .biomech-visual img {
-            max-width: 280px;
-            height: auto;
-            border-radius: 10px;
+        /* Linha de Scanner Animada */
+        .scanner-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 86, 179, 0.6);
+            box-shadow: 0 0 15px 2px rgba(0, 86, 179, 0.8);
+            animation: scan 3s infinite linear;
+            z-index: 10;
+        }
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
         }
 
         .nav-portal {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 40px 0 50px 0;
+            gap: 12px;
+            margin: 30px 0;
         }
-
         .nav-button {
-            display: block;
-            text-align: center;
-            padding: 15px;
+            padding: 15px 5px;
             background-color: var(--accent-blue-dark);
             color: white !important;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: opacity 0.2s;
+            font-size: 0.85rem;
         }
-
         .nav-button.driver { background-color: var(--btn-black); }
-        .nav-button:hover { opacity: 0.9; }
         .nav-button.secondary { background-color: #f0f0f0; color: #333 !important; border: 1px solid #ddd; }
 
-        section { margin-bottom: 60px; text-align: left; }
-        h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; }
+        section { margin-bottom: 40px; text-align: left; }
+        h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; font-size: 1.2rem; }
+        .algorithm-box { background: var(--card-bg); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid var(--border-color); }
+        .formula { font-size: 1.8rem; color: var(--accent-blue-dark); font-weight: 800; }
+        
+        footer { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 20px; }
 
-        .algorithm-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .formula { font-size: 2.2rem; color: var(--accent-blue-dark); font-weight: 800; }
-
-        footer {
-            text-align: center;
-            font-size: 0.9rem;
-            border-top: 1px solid #eaeaea;
-            padding-top: 40px;
-            color: #888;
-        }
-
-        @media (max-width: 600px) {
-            .nav-portal { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 600px) { .nav-portal { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -130,11 +114,11 @@
         <header>
             <h1>SALA • SAFE-LOAD ANALYTICS</h1>
             <p id="tagline" class="subtitle">Predictive Intelligence for Norwegian Logistics</p>
-            <p>www.safelast.no</p>
         </header>
 
-        <div class="biomech-visual">
-            <img src="sala_body.png" alt="SALA Biomechanical Scanner">
+        <div class="scanner-container">
+            <div class="scanner-line"></div>
+            <img src="sala_body.png" alt="Biomechanical Body Scan">
         </div>
 
         <nav class="nav-portal">
@@ -145,26 +129,19 @@
 
         <section>
             <h2 id="h-overview">Overview</h2>
-            <p id="p-overview">SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).</p>
+            <p id="p-overview" style="font-size: 0.9rem;">SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector.</p>
         </section>
 
         <section>
             <h2 id="h-algorithm">The Core Algorithm</h2>
             <div class="algorithm-box">
-                <p id="p-algorithm">Ergonomic Risk Index Calculation:</p>
                 <div class="formula">Ri = (Sf × Lw) + (Fi × Th)</div>
             </div>
         </section>
 
-        <section style="background: #f9f9f9; padding: 30px; border-radius: 12px; border: 1px solid #eee; margin-top: 40px;">
-            <h2 id="h-science" style="color: #0056b3; border-left: 4px solid #0056b3; padding-left: 15px;">The Science Behind SALA</h2>
-            <p id="p-sf"><strong>Biomechanical Surface Factor (Sf):</strong> Operating on compressed snow or ice requires up to 80% more stabilizer muscle activation. We apply a 1.8x multiplier to account for increased torque on the lumbar region (L5/S1) during unstable conditions.</p>
-            <p id="p-fi"><strong>Neuromuscular Fatigue (Fi):</strong> Risk scales exponentially after 6h 30m of active duty. Vibration-induced fatigue leads to delayed motor response, making manual load adjustments significantly more hazardous.</p>
-        </section>
-
         <footer>
             <p>Author: <strong>Paulo Fernando De Barros</strong> | Larvik, Norway</p>
-            <p>&copy; 2026 SALA - Safe-Load Analytics. All rights reserved.</p>
+            <p>&copy; 2026 SALA - Safe-Load Analytics.</p>
         </footer>
     </div>
 
@@ -176,12 +153,8 @@
                 dashboard: "LIVE DASHBOARD",
                 company: "COMPANY ACCESS",
                 overviewH: "Overview",
-                overviewP: "SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).",
-                algorithmH: "The Core Algorithm",
-                algorithmP: "Ergonomic Risk Index Calculation:",
-                scienceH: "The Science Behind SALA",
-                sfP: "<strong>Biomechanical Surface Factor (Sf):</strong> Operating on compressed snow or ice requires up to 80% more stabilizer muscle activation. We apply a 1.8x multiplier to account for increased torque on the lumbar region (L5/S1) during unstable conditions.",
-                fiP: "<strong>Neuromuscular Fatigue (Fi):</strong> Risk scales exponentially after 6h 30m of active duty. Vibration-induced fatigue leads to delayed motor response, making manual load adjustments significantly more hazardous."
+                overviewP: "SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector.",
+                algorithmH: "The Core Algorithm"
             },
             no: {
                 tagline: "Prediktiv Intelligens for Norsk Logistikk",
@@ -189,19 +162,14 @@
                 dashboard: "SANNTIDSDASHBOARD",
                 company: "BEDRIFTSTILGANG",
                 overviewH: "Oversikt",
-                overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren, med fokus på å redusere sykefravær.",
-                algorithmH: "Kjernealgoritmen",
-                algorithmP: "Beregning av ergonomisk risikoindeks:",
-                scienceH: "Vitenskapen bak SALA",
-                sfP: "<strong>Biomekanisk overflatefaktor (Sf):</strong> Arbeid på komprimert snø eller is krever opptil 80% mer aktivering av stabiliseringsmuskulatur. Vi bruker en 1,8x multiplikator for å ta høyde for økt belastning på korsryggen (L5/S1).",
-                fiP: "<strong>Nevromuskulær tretthet (Fi):</strong> Risiko øker eksponentielt etter 6t 30m aktiv tjeneste. Vibrasjonsindusert tretthet fører til forsinket motorisk respons."
+                overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren.",
+                algorithmH: "Kjernealgoritmen"
             }
         };
 
         function translateTo(lang) {
             document.querySelectorAll('.lang-nav-central span').forEach(s => s.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
-
             document.getElementById('tagline').innerText = translations[lang].tagline;
             document.getElementById('btn-driver').innerText = translations[lang].driver;
             document.getElementById('btn-dashboard').innerText = translations[lang].dashboard;
@@ -209,10 +177,6 @@
             document.getElementById('h-overview').innerText = translations[lang].overviewH;
             document.getElementById('p-overview').innerText = translations[lang].overviewP;
             document.getElementById('h-algorithm').innerText = translations[lang].algorithmH;
-            document.getElementById('p-algorithm').innerText = translations[lang].algorithmP;
-            document.getElementById('h-science').innerText = translations[lang].scienceH;
-            document.getElementById('p-sf').innerHTML = translations[lang].sfP;
-            document.getElementById('p-fi').innerHTML = translations[lang].fiP;
         }
     </script>
 </body>
