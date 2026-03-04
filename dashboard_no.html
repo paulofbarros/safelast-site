@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALA • Dashboard Analyse</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --card-bg: #f8fbfe;
+            --border-color: #e1e8ed;
+            --text-primary: #1c2a38;
+            --text-secondary: #5e6d7a;
+            --accent-blue: #007bff;
+            --accent-red: #dc3545;
+            --accent-green: #28a745;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 10px;
+        }
+
+        /* Utgangsknapp på toppen */
+        .nav-header {
+            max-width: 900px;
+            margin: 0 auto 10px auto;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .btn-exit {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        .btn-exit:hover { background: var(--card-bg); color: var(--accent-blue); }
+
+        .dashboard-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            box-sizing: border-box;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 600px) {
+            header { flex-direction: row; justify-content: space-between; text-align: left; }
+        }
+
+        h1 { font-size: 1.4rem; font-weight: 800; margin: 0; color: var(--accent-blue); }
+
+        .input-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .input-group { 
+            flex: 1 1 120px; 
+            text-align: left; 
+        }
+
+        .input-group label { display: block; font-size: 0.6rem; font-weight: bold; color: var(--text-secondary); margin-bottom: 5px; text-transform: uppercase; }
+        
+        input { 
+            padding: 10px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            width: 100%; 
+            box-sizing: border-box;
+            font-size: 0.9rem;
+        }
+
+        .btn-run { 
+            background: var(--accent-blue); 
+            color: white; 
+            border: none; 
+            padding: 15px 30px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        @media (min-width: 600px) { .btn-run { width: auto; align-self: flex-end; } }
+
+        .main-risk-indicator { text-align: center; margin: 20px 0; }
+        .risk-value { font-size: 4rem; font-weight: 900; margin: 0; transition: color 0.5s; }
+        
+        .alert-box {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--accent-blue);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .alert-recommendation { font-size: 1rem; font-weight: 700; margin-top: 5px; }
+
+        footer { 
+            text-align: center; 
+            font-size: 0.7rem; 
+            color: #888; 
+            margin-top: 30px; 
+            border-top: 1px solid var(--border-color); 
+            padding-top: 20px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-header">
+        <a href="index.html" class="btn-exit">← TILBAKE TIL PORTAL</a>
+    </div>
+
+    <div class="dashboard-container">
+        <header>
+            <div>
+                <h1>SALA • ANALYSE DASHBOARD</h1>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin:0;">Operasjonell Risikoetterretning</p>
+            </div>
+            <div style="font-weight: bold; color: var(--text-secondary); font-size: 0.7rem; margin-top: 10px;">LARVIK • NORGE</div>
+        </header>
+
+        <section class="input-section">
+            <div class="input-group">
+                <label>Timer</label>
+                <input type="number" id="hours" value="4.0" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Temp °C</label>
+                <input type="number" id="temp" value="2">
+            </div>
+            <div class="input-group">
+                <label>Last (T)</label>
+                <input type="number" id="weight" value="0.5" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Tung (Kolli)</label>
+                <input type="number" id="heavy" value="0">
+            </div>
+            <div class="input-group">
+                <label>Lett (Kolli)</label>
+                <input type="number" id="light" value="0">
+            </div>
+            <button class="btn-run" onclick="calculateSALA()">KJØR ANALYSE</button>
+        </section>
+
+        <section class="main-risk-indicator">
+            <p style="color: var(--text-secondary); font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">Beregnet Risikoindeks</p>
+            <p class="risk-value" id="risk-display">--%</p>
+        </section>
+
+        <section class="alert-box" id="alert-box">
+            <p style="color: var(--text-secondary); font-size: 0.6rem; font-weight: bold; margin: 0; text-transform: uppercase;">Sikkerhetsstatus</p>
+            <p class="alert-recommendation" id="rec-text">Venter på data...</p>
+        </section>
+
+        <footer>
+            <p><b>SALA PROSJEKT</b> | Biomekanisk Tilpasning<br>
+            Paulo Fernando De Barros | Larvik 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        async function calculateSALA() {
+            const h = document.getElementById('hours').value;
+            const t = document.getElementById('temp').value;
+            const w = document.getElementById('weight').value;
+            const ph = document.getElementById('heavy').value;
+            const pl = document.getElementById('light').value;
+
+            const riskDisplay = document.getElementById('risk-display');
+            const recText = document.getElementById('rec-text');
+            const alertBox = document.getElementById('alert-box');
+
+            riskDisplay.innerText = "...";
+
+            try {
+                const response = await fetch("https://sala-risk-engine-718760302477.europe-north1.run.app", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        "driving_hours": parseFloat(h), 
+                        "temp": parseFloat(t),
+                        "total_weight": parseFloat(w),
+                        "heavy_packages": parseInt(ph),
+                        "light_packages": parseInt(pl)
+                    })
+                });
+
+                const data = await response.json();
+                const risk = data.risk_index;
+
+                riskDisplay.innerText = risk + "%";
+
+                if (risk >= 80) {
+                    riskDisplay.style.color = "var(--accent-red)";
+                    alertBox.style.borderLeftColor = "var(--accent-red)";
+                    recText.innerText = "KRITISK: KUN MEKANISK LØFTING";
+                } else if (risk >= 50) {
+                    riskDisplay.style.color = "#ffa500";
+                    alertBox.style.borderLeftColor = "#ffa500";
+                    recText.innerText = "ADVARSEL: ERGONOMISKE HJELPEMIDLER KREVES";
+                } else {
+                    riskDisplay.style.color = "var(--accent-green)";
+                    alertBox.style.borderLeftColor = "var(--accent-green)";
+                    recText.innerText = "TRYGT: STANDARD PROTOKOLL";
+                }
+            } catch (error) {
+                riskDisplay.innerText = "FEIL";
+                recText.innerText = "Tilkoblingsfeil til skyen.";
+            }
+        }
+        window.onload = calculateSALA;
+    </script>
+</body>
+</html>
