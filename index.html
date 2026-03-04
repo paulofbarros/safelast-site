@@ -1,117 +1,79 @@
 <!DOCTYPE html>
-<html lang="nb">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SALA • Biomechanical Risk Management</title>
     <style>
-        :root {
-            --corp-blue: #002b5c;
-            --accent-blue: #0056b3;
-            --bg-dark: #0a0e14;
-        }
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            background: var(--bg-dark); 
-            color: white; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            min-height: 100vh;
-        }
-        .hero { text-align: center; padding: 20px; }
-        .logo { font-size: 3rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 5px; }
-        .tagline { color: var(--accent-blue); font-weight: bold; margin-bottom: 40px; letter-spacing: 2px; }
+        body { background: #0a0e14; color: #ffffff; font-family: sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
         
-        /* Language Selector */
-        .lang-selector { margin-bottom: 40px; display: flex; gap: 15px; }
-        .lang-btn { 
-            background: #1a1f26; 
-            border: 1px solid #333; 
-            color: white; 
-            padding: 8px 15px; 
-            border-radius: 20px; 
-            cursor: pointer; 
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-        .lang-btn:hover { border-color: var(--accent-blue); }
-        .lang-btn.active { background: var(--accent-blue); border-color: var(--accent-blue); }
+        /* Seletor de Idiomas Adicionado */
+        .lang-nav { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
+        .lang-nav span { cursor: pointer; font-size: 1.2rem; opacity: 0.6; transition: 0.3s; }
+        .lang-nav span:hover { opacity: 1; }
+        .lang-nav span.active { opacity: 1; border-bottom: 2px solid #007bff; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 90%; max-width: 800px; }
-        .card { 
-            background: #1a1f26; 
-            padding: 30px; 
-            border-radius: 15px; 
-            text-decoration: none; 
-            color: white; 
-            border: 1px solid #333; 
-            transition: all 0.3s ease;
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        .card h2 { margin-top: 0; color: var(--accent-blue); }
-        .card p { color: #888; font-size: 0.9rem; }
+        .logo { font-size: 3rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 5px; }
+        .tagline { color: #007bff; font-weight: bold; margin-bottom: 30px; letter-spacing: 2px; font-size: 0.8rem; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 90%; max-width: 600px; }
+        .card { background: #1a1f26; padding: 40px 20px; border-radius: 15px; text-decoration: none; color: white; text-align: center; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { border-color: #007bff; transform: translateY(-5px); }
+        .card h2 { margin: 0; font-size: 1.2rem; }
+        .card p { color: #888; font-size: 0.8rem; margin-top: 10px; }
+        
+        @media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <div class="logo">SALA</div>
-        <div class="tagline">PREVENTING SICK LEAVE • NORWAY</div>
-        
-        <div class="lang-selector">
-            <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-            <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
-        </div>
+    <div class="lang-nav">
+        <span id="btn-en" class="active" onclick="translateTo('en')">🇬🇧</span>
+        <span id="btn-no" onclick="translateTo('no')">🇳🇴</span>
     </div>
 
-    <div class="grid">
-        <a href="company.html" class="card" id="card-mgmt">
-            <h2 id="t-mgmt-h">Management Portal</h2>
-            <p id="t-mgmt-p">Fleet analytics, risk logs, and ROI monitoring for HSE managers.</p>
-        </a>
+    <div class="logo">SALA</div>
+    <div id="tagline" class="tagline">PREVENTING SICK LEAVE • NORWAY</div>
 
-        <a href="drive.html" class="card" id="card-driver">
-            <h2 id="t-driver-h">Universal Driver View</h2>
-            <p id="t-driver-p">Real-time risk feedback, weather sync, and QR package scanner.</p>
+    <div class="grid">
+        <a href="company.html" class="card">
+            <h2 id="txt-mgmt-h">Management Portal</h2>
+            <p id="txt-mgmt-p">Fleet analytics and risk monitoring.</p>
+        </a>
+        <a href="drive.html" class="card">
+            <h2 id="txt-driver-h">Driver View</h2>
+            <p id="txt-driver-p">Real-time risk feedback and scanner.</p>
         </a>
     </div>
 
     <script>
-        const content = {
+        const translations = {
             en: {
                 tagline: "PREVENTING SICK LEAVE • NORWAY",
                 mgmtH: "Management Portal",
-                mgmtP: "Fleet analytics, risk logs, and ROI monitoring for HSE managers.",
-                driverH: "Universal Driver View",
-                driverP: "Real-time risk feedback, weather sync, and QR package scanner."
+                mgmtP: "Fleet analytics and risk monitoring.",
+                driverH: "Driver View",
+                driverP: "Real-time risk feedback and scanner."
             },
             no: {
                 tagline: "FOREBYGGING AV SYKEFRAVÆR • NORGE",
                 mgmtH: "Ledelsesportal",
-                mgmtP: "Flåteanalyse, risikologger eog ROI-overvåking for HMS-ledere.",
-                driverH: "Universal Sjåførvisning",
-                driverP: "Sanntids risicotilbakemelding, værsynkronisering og QR-skanner."
+                mgmtP: "Flåteanalyse og risikoovervåking.",
+                driverH: "Sjåførvisning",
+                driverP: "Sanntids risikotilbakemelding og skanner."
             }
         };
 
-        function setLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+        function translateTo(lang) {
+            // Atualiza botões
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-no').classList.toggle('active', lang === 'no');
 
-            document.querySelector('.tagline').innerText = content[lang].tagline;
-            document.getElementById('t-mgmt-h').innerText = content[lang].mgmtH;
-            document.getElementById('t-mgmt-p').innerText = content[lang].mgmtP;
-            document.getElementById('t-driver-h').innerText = content[lang].driverH;
-            document.getElementById('t-driver-p').innerText = content[lang].driverP;
-
-            // Guardar preferência (opcional)
-            localStorage.setItem('sala_lang', lang);
+            // Atualiza textos
+            document.getElementById('tagline').innerText = translations[lang].tagline;
+            document.getElementById('txt-mgmt-h').innerText = translations[lang].mgmtH;
+            document.getElementById('txt-mgmt-p').innerText = translations[lang].mgmtP;
+            document.getElementById('txt-driver-h').innerText = translations[lang].driverH;
+            document.getElementById('txt-driver-p').innerText = translations[lang].driverP;
         }
     </script>
 </body>
