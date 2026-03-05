@@ -12,7 +12,6 @@
         #risk-value { font-size: 3rem; font-weight: 900; margin: 0; }
         .input-group { margin-top: 15px; text-align: left; }
         
-        /* Ajuste no Label para incluir o link técnico */
         .label-wrapper { display: flex; justify-content: space-between; align-items: center; }
         label { display: block; color: #888; font-size: 0.65rem; margin-bottom: 4px; font-weight: bold; letter-spacing: 1px; }
         .info-btn { color: #007bff; font-size: 0.7rem; text-decoration: none; cursor: pointer; }
@@ -29,12 +28,10 @@
         .scientific-footer p { font-size: 0.7rem; line-height: 1.4; color: #ccc; margin-bottom: 10px; }
         .keyword { color: #ffffff; font-weight: bold; }
 
-        /* Navigation */
         .nav-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #1a1f26; }
         .manual-link { color: #007bff; text-decoration: none; font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 15px; }
         .exit-link { color: #555; text-decoration: none; font-size: 0.75rem; display: block; }
 
-        /* Modal / Nota Técnica Overlay */
         #tech-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; padding: 20px; box-sizing: border-box; overflow-y: auto; }
         .modal-content { background: #1a1f26; padding: 25px; border-radius: 15px; max-width: 400px; margin: 40px auto; text-align: left; border: 1px solid #007bff; }
         .modal-content h2 { color: #007bff; font-size: 1.1rem; margin-top: 0; }
@@ -70,6 +67,9 @@
                 <span class="info-btn" onclick="toggleModal()">ⓘ Scientific Note</span>
             </div>
             <input type="number" id="hours" value="2.0" step="0.1">
+
+            <label>DRIVER WEIGHT (KG)</label>
+            <input type="number" id="driver_weight" value="80">
             
             <label id="label-temp">DETECTION TEMP (°C)</label>
             <input type="number" id="temp" value="0">
@@ -177,6 +177,7 @@
 
         async function updateDriverView() {
             const h = document.getElementById('hours').value;
+            const dw = document.getElementById('driver_weight').value; // Coleta o peso do motorista
             const t = document.getElementById('temp').value;
             const w = document.getElementById('weight').value;
             const ph = document.getElementById('packages_heavy').value;
@@ -191,6 +192,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
                         "driving_hours": parseFloat(h), 
+                        "driver_weight": parseFloat(dw), // Enviando o novo dado para a API
                         "temp": parseFloat(t),
                         "total_weight": parseFloat(w),
                         "heavy_packages": parseInt(ph),
