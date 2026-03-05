@@ -75,7 +75,7 @@
             <input type="number" id="temp" value="0">
 
             <label>CARGO WEIGHT (TONS)</label>
-            <input type="number" id="weight" value="0">
+            <input type="number" id="weight" value="0" step="0.001">
 
             <label>HEAVY PACKAGES (> 25KG)</label>
             <input type="number" id="packages_heavy" value="0">
@@ -153,8 +153,15 @@
                 if (!html5QrCode) html5QrCode = new Html5Qrcode("reader");
                 html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 },
                     (decodedText) => {
+                        // Lógica Híbrida: Soma pacote e incrementa peso (0.01t por pacote leve)
                         let inputL = document.getElementById('packages_light');
+                        let inputW = document.getElementById('weight');
+                        
                         inputL.value = (parseInt(inputL.value) || 0) + 1;
+                        // Soma 0.01 tons (10kg) ao Cargo Weight atual
+                        let currentWeight = parseFloat(inputW.value) || 0;
+                        inputW.value = (currentWeight + 0.01).toFixed(3);
+
                         html5QrCode.stop().then(() => {
                             readerDiv.style.display = 'none';
                             scanBtn.innerText = "[ ] SCAN PACKAGE";
@@ -177,7 +184,7 @@
 
         async function updateDriverView() {
             const h = document.getElementById('hours').value;
-            const dw = document.getElementById('driver_weight').value; // Coleta o peso do motorista
+            const dw = document.getElementById('driver_weight').value;
             const t = document.getElementById('temp').value;
             const w = document.getElementById('weight').value;
             const ph = document.getElementById('packages_heavy').value;
@@ -192,7 +199,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
                         "driving_hours": parseFloat(h), 
-                        "driver_weight": parseFloat(dw), // Enviando o novo dado para a API
+                        "driver_weight": parseFloat(dw),
                         "temp": parseFloat(t),
                         "total_weight": parseFloat(w),
                         "heavy_packages": parseInt(ph),
