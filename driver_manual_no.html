@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nb">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,12 @@
     <style>
         :root {
             --corp-blue: #002b5c;
-            --accent-blue: #0056b3;
+            --accent-blue: #007bff;
             --bg-gray: #f8f9fa;
             --text: #333;
         }
         body { 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             line-height: 1.6; 
             color: var(--text); 
             max-width: 850px; 
@@ -38,67 +38,79 @@
             border-radius: 0 8px 8px 0;
             font-weight: 500;
         }
+        .ai-box {
+            background: #f0f0ff;
+            border: 1px dashed var(--accent-blue);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
         .step-list { padding-left: 20px; }
         .step-list li { margin-bottom: 15px; }
         .scientific-note { font-style: italic; color: #666; font-size: 0.9rem; margin-top: 5px; }
         .footer-nav { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; display: flex; justify-content: space-between; font-size: 0.9rem; }
         .footer-nav a { color: var(--accent-blue); text-decoration: none; font-weight: bold; }
+        
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 20px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <p style="text-transform: uppercase; letter-spacing: 2px; color: #888; font-weight: bold; margin-bottom: 0;">HMS og Operasjonell Kvalitet</p>
-        <h1>Sikkerhetshåndbok for Sjåfører</h1>
+        <p style="text-transform: uppercase; letter-spacing: 2px; color: #888; font-weight: bold; margin-bottom: 0;">Operasjonell Kvalitet</p>
+        <h1>Sjåførens Helse- og Sikkerhetshåndbok</h1>
     </header>
 
     <section>
-        <p><strong>SALA (Safe-Load Analytics)</strong> er din personlige biomekaniske assistent. Vårt mål er enkelt: <strong>at du skal komme hjem like frisk som da du startet skiftet.</strong> Ved å overvåke fysisk belastning i sanntid, forebygger vi belastningsskader og sykefravær.</p>
+        <p><strong>SALA (Safe-Load Analytics)</strong>-systemet er din personlige biomekaniske assistent. Vårt mål er enkelt: <strong>at du skal komme hjem like frisk som da du startet skiftet.</strong> Ved å overvåke fysisk belastning i sanntid, forebygger vi belastningsskader og sykefravær.</p>
     </section>
 
-    <div class="highlight-box">
-        <strong>Vår Filosofi:</strong> Vi sporer ikke bare lasten; vi sporer <em>effekten</em> lasten har på kroppen din.
+    <div class="ai-box">
+        <strong>🤖 SALA AI-Oppdatering:</strong> Systemet bruker nå maskinlæring for å forutsi muskeltrøtthet basert på dine individuelle bevegelsesmønstre og værforholdene i Larvik-regionen.
     </div>
 
-    <h2>1. Risikoindeks (Ri) Forklart</h2>
-    <p>Appen viser en prosentandel som representerer din nåværende muskelskjelettbelastning. Dette er basert på vitenskapelige beregninger av:</p>
+    <h2>1. Risikoindeksen (Ri) Forklart</h2>
+    <p>Appen viser en prosentandel som representerer din nåværende muskel- og skjelettbelastning. Dette er en vitenskapelig beregning basert på:</p>
     <ul class="step-list">
-        <li><strong>Kumulativ tretthet:</strong> Lange timer bak rattet reduserer stabiliteten i kjernemuskulaturen.</li>
-        <li><strong>Inerti-påvirkning:</strong> Brå bevegelser med tunge pakker øker dreiemomentet i korsryggen.</li>
-        <li><strong>Termisk stress:</strong> Arbeid i norske vintertemperaturer gjør sener og muskler mindre smidige.</li>
+        <li><strong>Akkumulert trøtthet:</strong> Lange kjøreøkter reduserer stabiliteten i kjernemuskulaturen.</li>
+        <li><strong>Treghetseffekt:</strong> Brå bevegelser med tunge pakker øker momentet på korsryggen.</li>
+        <li><strong>Overflatefaktor (Sf):</strong> Glatt underlag (is/snø) øker muskelaktiveringen med opptil 80%.</li>
     </ul>
 
-    <h2>2. Varslingsprotokoller i Sanntid</h2>
+    <h2>2. Protokoller for Sanntidsvarsling</h2>
     <div class="warning-box">
-        ⚠️ <strong>GULT VARSEL (50-79%):</strong> Tretthet detektert. Juster løftestillingen. Bruk hjelpemidler (tralle/jekketralle) de neste 30 minuttene.
+        ⚠️ <strong>GULT VARSEL (50-79%):</strong> Trøtthet detektert. Juster løfteteknikk. Bruk mekaniske hjelpemidler (tralle/jekketralle) de neste 30 minuttene.
     </div>
     <div class="warning-box" style="background: #f8d7da; border-left-color: #dc3545;">
-        🚫 <strong>RØDT VARSEL (80%+):</strong> Kritisk belastning. Stopp manuell håndtering umiddelbart. Ta en 5-minutters aktiv restitusjonspause.
+        🚫 <strong>RØDT VARSEL (80%+):</strong> Kritisk metning i muskulaturen. Stopp manuell håndtering umiddelbart. Ta en 5-minutters aktiv restitusjonspause.
     </div>
 
-    <h2>3. 25-kilosregelen for Sikkerhet</h2>
-    <p>SALA bruker <strong>Body Mass Percentage Rule</strong>. Hver gang du skanner en pakke, vurderes innsatsen som kreves:</p>
+    <h2>3. Automatisk Værsynkronisering</h2>
+    <p>SALA er direkte koblet til meteorologiske sensorer. Systemet vet når det er kuldegrader i Larvik:</p>
+    <ul class="step-list">
+        <li><strong>Under 0°C:</strong> Systemet øker automatisk sikkerhetsmarginen fordi muskler og sener er mer utsatt for skader i kulde.</li>
+        <li><strong>Vintermodus:</strong> Appen vil foreslå hyppigere, men kortere pauser for å opprettholde blodsirkulasjonen.</li>
+    </ul>
+
+    <h2>4. "Vekt-regelen" for Pakker</h2>
+    <p>SALA følger <strong>regelen om prosentandel av kroppsmasse</strong>:</p>
     <ul class="step-list">
         <li><strong>Under 25 kg:</strong> Standard håndtering. Hold tyngdepunktet nær kroppen.</li>
-        <li><strong>Over 25 kg:</strong> Høyrisikokategori. Systemet logger disse som "Heavy Impacts". Gjentatte løft uten hjelpemidler vil raskt øke risikoindeksen din.</li>
+        <li><strong>Over 25 kg:</strong> Høyrisikokategori. Systemet logger dette som "Tunge Belastninger". Kontinuerlige løft over 25 kg uten mekanisk støtte vil raskt øke din risikoindeks.</li>
     </ul>
-    <p class="scientific-note">Vitenskapelig note: Løft av 25 kg med bøyd rygg kan generere over 300 kg trykk på L5-S1 skivene i ryggraden.</p>
+    <p class="scientific-note">Vitenskapelig notat: Løft av 25 kg med bøyd rygg kan generere over 300 kg trykk på L5-S1 skivene i ryggraden.</p>
 
-    <h2>4. Vinteroperasjoner (Norge)</h2>
-    <p>Kulde er en usynlig risikofaktor. Når appen detekterer temperaturer under 0°C:</p>
-    <ul class="step-list">
-        <li>Systemet øker sikkerhetsmarginen (Sf).</li>
-        <li>Musklene krever mer oksygen, men mottar mindre på grunn av vasokonstriksjon.</li>
-        <li><strong>Tiltak:</strong> La "Detection Temp" synkronisere. Systemet vil automatisk foreslå hyppigere, korte pauser.</li>
-    </ul>
-
-    <h2>5. Personvern og Rettigheter</h2>
-    <p>SALA er et <strong>forebyggende helseverktøy</strong>, ikke et overvåkningsverktøy. Dine biomekaniske data brukes til å begrunne investeringer i bedre utstyr og forebygge arbeidsulykker i tråd med HMS-retningslinjer.</p>
+    <h2>5. Regulatorisk Samsvar (Arbeidsmiljøloven)</h2>
+    <p>SALA er designet for å oppfylle kravene i <strong>Arbeidsmiljøloven § 4-4</strong>. Dataene gir verneombudet objektive bevis for å kreve mekanisk assistanse der den fysiske belastningen blir for høy.</p>
 
     <div class="footer-nav">
         <a href="index.html">← Tilbake til Portalen</a>
-        <a href="javascript:window.close();">Lukk Håndbok ×</a>
+        <a href="javascript:window.close();">Lukk håndbok ×</a>
     </div>
 </div>
 
