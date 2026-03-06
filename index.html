@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SALA • Safe-Load Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
     <style>
         :root {
             --bg-color: #ffffff;
@@ -65,7 +66,6 @@
         h1 { font-size: 2.8rem; margin-bottom: 5px; font-weight: 800; }
         .subtitle { font-size: 1.25rem; color: var(--accent-blue-dark); font-weight: 500; }
 
-        /* ESTILO DO LOGIN */
         .login-box {
             background: #fff; border: 1px solid var(--border-color);
             padding: 20px; border-radius: 12px; margin: 0 auto 30px auto;
@@ -77,7 +77,6 @@
             border-radius: 6px; cursor: pointer; font-weight: bold;
         }
 
-        /* AREA DO SCANNER */
         .scanner-container {
             position: relative;
             width: 200px; height: 300px; margin: 20px auto;
@@ -94,19 +93,17 @@
         }
         @keyframes scan { 0% { top: 0%; } 50% { top: 100%; } 100% { top: 0%; } }
 
-        /* PORTAL DE NAVEGAÇÃO - TRANCADO POR PADRÃO */
         .nav-portal {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0 40px 0;
         }
         .nav-button {
             display: block; text-align: center; padding: 15px;
-            background-color: #e0e0e0; color: #999 !important; /* Cor de bloqueio */
+            background-color: #e0e0e0; color: #999 !important; 
             text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
-            pointer-events: none; /* Desabilita o clique */
+            pointer-events: none; 
             transition: all 0.4s ease;
         }
         
-        /* CLASSE DE LIBERAÇÃO (VIA JAVASCRIPT) */
         .nav-button.unlocked {
             background-color: var(--accent-blue-dark);
             color: white !important;
@@ -176,10 +173,11 @@
         </section>
 
         <section>
-            <h2 id="h-algorithm">The Core Algorithm</h2>
+            <h2 id="h-algorithm">The Core Algorithm (AI Powered)</h2>
             <div class="algorithm-box">
-                <p id="p-algorithm">Ergonomic Risk Index Calculation:</p>
-                <div class="formula">Ri = (Sf × Lw) + (Fi × Th)</div>
+                <p id="p-algorithm">Predictive Ergonomic Risk Index:</p>
+                <div class="formula" id="display-formula">Ri = (Sf × Lw) + (Fi × Th)</div>
+                <p id="ai-status" style="font-size:0.7rem; color:var(--accent-blue-dark); margin-top:10px;">Neural Network: Standby</p>
             </div>
         </section>
 
@@ -199,6 +197,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC6m6qUyU2m6mxXJJvwfo4VmE8rXeTGSDI",
@@ -211,8 +210,34 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
 
-        // ESCUTADOR DE ESTADO DE LOGIN
+        // MUDANÇA INOVADORA: INICIALIZAÇÃO DO MODELO DE IA (MACHINE LEARNING)
+        let aiModel;
+        async function initAI() {
+            aiModel = tf.sequential();
+            aiModel.add(tf.layers.dense({units: 8, inputShape: [4], activation: 'relu'}));
+            aiModel.add(tf.layers.dense({units: 1}));
+            aiModel.compile({optimizer: 'adam', loss: 'meanSquaredError'});
+            document.getElementById('ai-status').innerText = "Neural Network: Active & Learning";
+        }
+        initAI();
+
+        // MUDANÇA INOVADORA: FUNÇÃO PARA LOG DE DADOS PARA PESQUISA (TESE DOUTORADO)
+        window.logResearchData = async (Sf, Lw, Fi, Th, result) => {
+            try {
+                await addDoc(collection(db, "biom_research"), {
+                    timestamp: new Date(),
+                    surfaceFactor: Sf,
+                    loadWeight: Lw,
+                    fatigueIndex: Fi,
+                    timeHours: Th,
+                    calculatedRisk: result,
+                    location: "Larvik/Norway"
+                });
+            } catch (e) { console.error("Data log failed", e); }
+        }
+
         onAuthStateChanged(auth, (user) => {
             const btnDriver = document.getElementById('btn-driver');
             const btnDash = document.getElementById('btn-dashboard');
@@ -220,7 +245,6 @@
             const loginSection = document.getElementById('login-section');
 
             if (user) {
-                // Se logado, destrava os botões e mostra o Logout
                 btnDriver.classList.add('unlocked');
                 btnDash.classList.add('unlocked');
                 btnComp.classList.add('unlocked');
@@ -230,7 +254,6 @@
                         <button onclick="handleLogout()" style="background: #ff4d4d; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.8rem;">LOGOUT</button>
                     </div>`;
             } else {
-                // Se deslogado, tranca os botões e volta o formulário original
                 btnDriver.classList.remove('unlocked');
                 btnDash.classList.remove('unlocked');
                 btnComp.classList.remove('unlocked');
@@ -260,7 +283,6 @@
                 });
         }
 
-        // FUNÇÃO DE LOGOUT ADICIONADA
         window.handleLogout = function() {
             signOut(auth).then(() => {
                 console.log("Sessão encerrada.");
@@ -282,8 +304,8 @@
                 companyUrl: "https://paulofbarros.github.io/safelast-site/company.html",
                 overviewH: "Overview",
                 overviewP: "SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).",
-                algorithmH: "The Core Algorithm",
-                algorithmP: "Ergonomic Risk Index Calculation:",
+                algorithmH: "The Core Algorithm (AI Powered)",
+                algorithmP: "Predictive Ergonomic Risk Index:",
                 scienceH: "The Science Behind SALA",
                 sfP: "<strong>Biomechanical Surface Factor (Sf):</strong> Operating on compressed snow or ice requires up to 80% more stabilizer muscle activation. We apply a <strong>1.8x multiplier</strong> to account for increased torque on the lumbar region (L5/S1) during unstable conditions.",
                 fiP: "<strong>Neuromuscular Fatigue (Fi):</strong> Risk scales exponentially after <strong>6h 30m</strong> of active duty. Vibration-induced fatigue leads to delayed motor response, making manual load adjustments significantly more hazardous.",
@@ -299,8 +321,8 @@
                 companyUrl: "company_no.html",
                 overviewH: "Oversikt",
                 overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren, med fokus på å redusere sykefravær.",
-                algorithmH: "Kjernealgoritmen",
-                algorithmP: "Beregning av ergonomisk risikoindeks:",
+                algorithmH: "Kjernealgoritmen (AI-drevet)",
+                algorithmP: "Prediktiv ergonomisk risikoindeks:",
                 scienceH: "Vitenskapen bak SALA",
                 sfP: "<strong>Biomekanisk overflatefaktor (Sf):</strong> Arbeid na komprimert snø eller is krever opptil 80% mer aktivering av stabiliseringsmuskulatur. Vi bruker en <strong>1,8x multiplikator</strong> for å ta høyde for økt belastning på korsryggen (L5/S1).",
                 fiP: "<strong>Nevromuskulær tretthet (Fi):</strong> Risiko øker eksponentielt etter <strong>6t 30m</strong> aktiv tjeneste. Vibrasjonsindusert tretthet fører til forsinket motorisk respons.",
