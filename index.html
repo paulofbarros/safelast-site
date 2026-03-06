@@ -12,7 +12,6 @@
             --text-primary: #1a1a1a;
             --border-color: #d1e3f8;
             --btn-black: #1a1a1a;
-            /* Cor ciano vibrante para o efeito neon */
             --scanner-laser: #00f2ff; 
         }
 
@@ -37,7 +36,6 @@
             display: flex; justify-content: center; gap: 25px; margin-bottom: 30px;
         }
         
-        /* Estilo das bandeiras planas e interativas */
         .lang-nav-central span { 
             cursor: pointer; 
             width: 45px; 
@@ -67,6 +65,18 @@
         h1 { font-size: 2.8rem; margin-bottom: 5px; font-weight: 800; }
         .subtitle { font-size: 1.25rem; color: var(--accent-blue-dark); font-weight: 500; }
 
+        /* ESTILO DO LOGIN */
+        .login-box {
+            background: #fff; border: 1px solid var(--border-color);
+            padding: 20px; border-radius: 12px; margin: 0 auto 30px auto;
+            display: flex; flex-direction: column; gap: 10px; max-width: 300px;
+        }
+        .login-box input { padding: 12px; border-radius: 6px; border: 1px solid #ddd; }
+        .login-box button { 
+            padding: 12px; background: var(--btn-black); color: white; border: none; 
+            border-radius: 6px; cursor: pointer; font-weight: bold;
+        }
+
         /* AREA DO SCANNER */
         .scanner-container {
             position: relative;
@@ -76,46 +86,35 @@
         }
         .scanner-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
-        /* EFEITO REPETIDO: Linha ultra fina com halo de luz neon */
         .scanner-line {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 1px;
+            position: absolute; top: 0; left: 0; width: 100%; height: 1px;
             background: var(--scanner-laser); 
-            box-shadow: 
-                0 0 5px var(--scanner-laser), 
-                0 0 10px var(--scanner-laser), 
-                0 0 20px rgba(0, 242, 255, 0.6), 
-                0 0 30px rgba(0, 242, 255, 0.4);
-            animation: scan 3s infinite linear; 
-            z-index: 10;
+            box-shadow: 0 0 5px var(--scanner-laser), 0 0 10px var(--scanner-laser), 0 0 20px rgba(0, 242, 255, 0.6);
+            animation: scan 3s infinite linear; z-index: 10;
         }
         @keyframes scan { 0% { top: 0%; } 50% { top: 100%; } 100% { top: 0%; } }
 
-        /* ESTILO DO LOGIN */
-        .login-box {
-            background: #fff; border: 1px solid var(--border-color);
-            padding: 20px; border-radius: 12px; margin-bottom: 30px;
-            display: flex; flex-direction: column; gap: 10px; max-width: 300px; margin: 0 auto 30px auto;
-        }
-        .login-box input { padding: 12px; border-radius: 6px; border: 1px solid #ddd; }
-        .login-box button { 
-            padding: 12px; background: var(--btn-black); color: white; border: none; 
-            border-radius: 6px; cursor: pointer; font-weight: bold;
-        }
-
+        /* PORTAL DE NAVEGAÇÃO - TRANCADO POR PADRÃO */
         .nav-portal {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0 40px 0;
         }
         .nav-button {
             display: block; text-align: center; padding: 15px;
-            background-color: var(--accent-blue-dark); color: white !important;
+            background-color: #e0e0e0; color: #999 !important; /* Cor de bloqueio */
             text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+            pointer-events: none; /* Desabilita o clique */
+            transition: all 0.4s ease;
         }
-        .nav-button.driver { background-color: var(--btn-black); }
-        .nav-button.secondary { background-color: #f0f0f0; color: #333 !important; border: 1px solid #ddd; }
+        
+        /* CLASSE DE LIBERAÇÃO (VIA JAVASCRIPT) */
+        .nav-button.unlocked {
+            background-color: var(--accent-blue-dark);
+            color: white !important;
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .nav-button.driver.unlocked { background-color: var(--btn-black); }
+        .nav-button.secondary.unlocked { background-color: #f0f0f0; color: #333 !important; border: 1px solid #ddd; }
 
         section { margin-bottom: 50px; text-align: left; }
         h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; }
@@ -138,20 +137,10 @@
     <div class="container">
         <div class="lang-nav-central">
             <span id="btn-en" class="active" data-label="ENGLISH" onclick="translateTo('en')">
-                <svg viewBox="0 0 60 30" style="border-radius: 3px;">
-                    <rect width="60" height="30" fill="#012169"/>
-                    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-                    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/>
-                    <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-                    <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
-                </svg>
+                <svg viewBox="0 0 60 30" style="border-radius: 3px;"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></svg>
             </span>
             <span id="btn-no" data-label="NORSK" onclick="translateTo('no')">
-                <svg viewBox="0 0 22 16" style="border-radius: 3px;">
-                    <rect width="22" height="16" fill="#ba0c2f"/>
-                    <path d="M0,8 h22 M8,0 v16" stroke="#fff" stroke-width="4"/>
-                    <path d="M0,8 h22 M8,0 v16" stroke="#00205b" stroke-width="2"/>
-                </svg>
+                <svg viewBox="0 0 22 16" style="border-radius: 3px;"><rect width="22" height="16" fill="#ba0c2f"/><path d="M0,8 h22 M8,0 v16" stroke="#fff" stroke-width="4"/><path d="M0,8 h22 M8,0 v16" stroke="#00205b" stroke-width="2"/></svg>
             </span>
         </div>
 
@@ -161,11 +150,13 @@
             <p>www.safelast.no</p>
         </header>
 
-        <div class="login-box">
-            <input type="email" id="email" placeholder="E-mail">
-            <input type="password" id="password" placeholder="Password">
-            <button onclick="handleLogin()">LOGIN</button>
-            <p id="login-msg" style="font-size: 0.8rem; margin: 0;"></p>
+        <div id="login-section">
+            <div class="login-box">
+                <input type="email" id="email" placeholder="E-mail">
+                <input type="password" id="password" placeholder="Password">
+                <button onclick="handleLogin()">LOGIN</button>
+                <p id="login-msg" style="font-size: 0.8rem; margin: 0;"></p>
+            </div>
         </div>
 
         <div class="scanner-container">
@@ -207,7 +198,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC6m6qUyU2m6mxXJJvwfo4VmE8rXeTGSDI",
@@ -221,6 +212,22 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
+        // ESCUTADOR DE ESTADO DE LOGIN
+        onAuthStateChanged(auth, (user) => {
+            const btnDriver = document.getElementById('btn-driver');
+            const btnDash = document.getElementById('btn-dashboard');
+            const btnComp = document.getElementById('btn-company');
+            const loginSection = document.getElementById('login-section');
+
+            if (user) {
+                // Se logado, destrava os botões
+                btnDriver.classList.add('unlocked');
+                btnDash.classList.add('unlocked');
+                btnComp.classList.add('unlocked');
+                loginSection.innerHTML = `<p style="color:green; font-weight:bold;">● System Active: ${user.email}</p>`;
+            }
+        });
+
         window.handleLogin = function() {
             const email = document.getElementById('email').value;
             const pass = document.getElementById('password').value;
@@ -229,8 +236,7 @@
             signInWithEmailAndPassword(auth, email, pass)
                 .then(() => { 
                     msg.style.color = "green"; 
-                    msg.innerText = "Access Granted! Redirecting...";
-                    setTimeout(() => window.location.href = "dashboard.html", 1500);
+                    msg.innerText = "Access Granted! Systems Unlocked.";
                 })
                 .catch(err => { 
                     msg.style.color = "red"; 
@@ -267,20 +273,19 @@
                 company: "BEDRIFTSTILGANG",
                 companyUrl: "company_no.html",
                 overviewH: "Oversikt",
-                overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren, com fokus på å redusere sykefravær.",
+                overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren, med fokus på å redusere sykefravær.",
                 algorithmH: "Kjernealgoritmen",
                 algorithmP: "Beregning av ergonomisk risikoindeks:",
                 scienceH: "Vitenskapen bak SALA",
-                sfP: "<strong>Biomekanisk overflatefaktor (Sf):</strong> Arbeid na komprimert snø eller is krever opptil 80% mer aktivering av stabiliseringsmuskulatur. Vi bruker en <strong>1,8x multiplikator</strong> for å ta høyde for økt belastning na korsryggen (L5/S1).",
+                sfP: "<strong>Biomekanisk overflatefaktor (Sf):</strong> Arbeid na komprimert snø eller is krever opptil 80% mer aktivering av stabiliseringsmuskulatur. Vi bruker en <strong>1,8x multiplikator</strong> for å ta høyde for økt belastning på korsryggen (L5/S1).",
                 fiP: "<strong>Nevromuskulær tretthet (Fi):</strong> Risiko øker eksponentielt etter <strong>6t 30m</strong> aktiv tjeneste. Vibrasjonsindusert tretthet fører til forsinket motorisk respons.",
-                regP: "<strong>Samsvar com regelverk (Arbeidsmiljøloven § 4-4):</strong> SALA er utviklet for å oppfylle kravene i arbeidsmiljøloven, og gir datadrevet dokumentasjon for <em>verneombudet</em> ved behov for mekanisk assistanse."
+                regP: "<strong>Samsvar med regelverk (Arbeidsmiljøloven § 4-4):</strong> SALA er utviklet for å oppfylle kravene i arbeidsmiljøloven, og gir datadrevet dokumentasjon for <em>verneombudet</em> ved behov for mekanisk assistanse."
             }
         };
 
         function translateTo(lang) {
             document.querySelectorAll('.lang-nav-central span').forEach(s => s.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
-            
             document.getElementById('tagline').innerText = translations[lang].tagline;
             
             const driverBtn = document.getElementById('btn-driver');
