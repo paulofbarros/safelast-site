@@ -47,11 +47,24 @@
             margin: 20px 0;
             border-left: 5px solid #607d8b;
         }
+        .ai-box {
+            background: #f0f0ff;
+            border: 1px dashed var(--accent-blue);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
         .step-list { padding-left: 20px; }
         .step-list li { margin-bottom: 15px; }
         .scientific-note { font-style: italic; color: #666; font-size: 0.9rem; margin-top: 5px; }
         .footer-nav { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; display: flex; justify-content: space-between; font-size: 0.9rem; }
         .footer-nav a { color: var(--accent-blue); text-decoration: none; font-weight: bold; }
+        
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -71,10 +84,14 @@
         <p>The <strong>SALA (Safe-Load Analytics)</strong> system is your personal biomechanical assistant. By monitoring real-time physical strain, we prevent long-term injuries and medical leave through advanced data analysis.</p>
     </section>
 
+    <div class="ai-box">
+        <strong>🤖 SALA AI Update:</strong> The system now uses machine learning to predict muscle fatigue based on your individual movement patterns and the weather conditions in the <strong>corresponding region</strong>.
+    </div>
+
     <h2>1. The Risk Index (Ri) & ML Engine</h2>
     <p>The Risk Index is a dynamic calculation powered by a Machine Learning engine that evaluates:</p>
     <ul class="step-list">
-        <li><strong>Cumulative Fatigue:</strong> Based on driving hours and vibration exposure.</li>
+        <li><strong>Cumulative Fatigue:</strong> Based on driving hours (initialized at 2.0h) and vibration exposure.</li>
         <li><strong>Dynamic Thermal Sync:</strong> Automatic adjustment of safety margins based on local temperature and tendon elasticity.</li>
         <li><strong>Mass Proportionality:</strong> The ratio between driver weight and handled payload.</li>
     </ul>
@@ -90,12 +107,12 @@
     <h2>3. The Smart Scanner System</h2>
     <p>Every interaction with the <strong>[ ] SCAN PACKAGE</strong> button updates your risk profile:</p>
     <ul class="step-list">
-        <li><strong>Automated Logging:</strong> Scans increment cargo weight by 0.01t for baseline calculations.</li>
+        <li><strong>Automated Logging:</strong> Scanned packages increment cargo weight by 0.01t for baseline risk calculations.</li>
         <li><strong>Manual Overrides:</strong> Use the "Heavy Packages" field for units exceeding 25kg to ensure accurate lumbar protection.</li>
     </ul>
 
     <h2>4. Environmental Factors</h2>
-    <p>In temperatures below 0°C, the system triggers <strong>Vasoconstriction Compensation</strong>. This increases the safety buffer for muscle fibers and sener, suggesting shorter intervals between manual tasks.</p>
+    <p>In temperatures below 0°C, the system triggers <strong>Vasoconstriction Compensation</strong>. This increases the safety buffer for muscle fibers and tendons, suggesting shorter intervals between manual tasks.</p>
 
     <h2>5. Data Privacy & Anonymization</h2>
     <p>SALA is a preventative tool. All research data is de-identified at the source. No personal identification is stored in the research database, ensuring your privacy while contributing to global occupational safety science.</p>
