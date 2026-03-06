@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "sala-21abd",
     "public": ".",
     "ignore": [
       "firebase.json",
