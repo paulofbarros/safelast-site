@@ -36,17 +36,21 @@
         <p class="subject-line"><strong>Subject:</strong> Integration of the 37.5-hour work week into risk models.</p>
         
         <h3>1. Objective</h3>
-        <p>To align SALA's real-time risk index ($R_i$) with the Norwegian standard 37.5-hour work week, ensuring fatigue multipliers are legally compliant and physiologically accurate.</p>
+        <p>To align SALA's real-time risk index ($Ri$) with the Norwegian standard 37.5-hour work week, ensuring fatigue multipliers are legally compliant and physiologically accurate.</p>
 
-        <h3>2. Fatigue Modeling</h3>
-        <p>The system applies a linear degradation scale to the stabilizer muscles of the lower back (L5/S1 region) based on the standard weekly threshold:</p>
+        <h3>2. Biomechanical Algorithm</h3>
+        <p>To calculate risk exposure at the end of a shift, the system applies the following adjustment factor for the L5/S1 region:</p>
         
         <div class="formula-box">
-            $$F_i = \left( \frac{\text{Hours Worked}}{37.5} \right) \times 1.25$$
+            $$Ri_{final} = Ri_{base} \times \left( 1 + \left( \frac{t}{37.5} \right) \times \Delta f \right)$$
         </div>
+        <p>Where <strong>t</strong> represents the cumulative hours worked, and <strong>$\Delta f$</strong> is the fatigue coefficient (muscle degradation rate).</p>
 
-        <h3>3. Compliance Protocol</h3>
-        <p>If the cumulative $F_i$ exceeds <strong>0.85</strong> within a single week, the system triggers a "Mechanical Only" mandate, restricting the driver from manual lifting tasks until a recovery period is logged.</p>
+        <h3>3. Operational Limits</h3>
+        <ul>
+            <li><strong>Mechanical Assistance:</strong> Mandatory after 6 hours if $Ri > 75\%$.</li>
+            <li><strong>Recovery:</strong> Minimum 11 hours between shifts (as per Norwegian Labor Law).</li>
+        </ul>
 
         <div class="footer">
             <span>&copy; 2026 Safe-Load Analytics</span>
