@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SALA • Nasjonalt Ledelsessammendrag</title>
+    <title>SALA • Nasjonal Teknisk Oppsummering</title>
     <style>
         :root {
             --corp-blue: #002b5c;
             --accent-blue: #0056b3;
             --bg-gray: #f4f7f6;
             --text-main: #1a1a1a;
-            --norway-red: #ba0c2f; /* Farge fra det norske flagget for nasjonal profil */
+            --gov-blue: #003768; /* Farge som indikerer offentlig data-integrasjon */
         }
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -26,108 +26,83 @@
             padding: 50px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-top: 8px solid var(--norway-red);
+            border-left: 10px solid var(--gov-blue);
         }
         .header {
-            border-bottom: 4px solid var(--corp-blue);
+            border-bottom: 2px solid #eee;
             margin-bottom: 30px;
             padding-bottom: 20px;
         }
-        h1 { color: var(--corp-blue); margin: 0; font-size: 2.2rem; text-transform: uppercase; }
-        h2 { color: var(--accent-blue); margin-top: 35px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 20px; }
-        .card {
-            background: #fdfdfd;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-blue);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-        .tag-national {
-            display: inline-block;
-            background: var(--norway-red);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-size: 0.85rem;
+        .data-source {
+            font-size: 0.8rem;
+            color: var(--accent-blue);
             font-weight: bold;
-            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .footer { margin-top: 50px; font-size: 0.85rem; color: #666; text-align: center; border-top: 1px solid #eee; padding-top: 20px; }
+        h1 { color: var(--corp-blue); margin: 5px 0; font-size: 2rem; }
+        h2 { color: var(--gov-blue); margin-top: 35px; font-size: 1.4rem; border-bottom: 1px solid #eee; }
+        .infobox {
+            background: #f0f4f8;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-style: italic;
+            border: 1px solid #d1d9e0;
+        }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .card { padding: 15px; background: #fff; border: 1px solid #eee; border-radius: 8px; }
+        .footer { margin-top: 50px; font-size: 0.8rem; color: #777; text-align: center; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <span class="tag-national">NASJONAL INFRASTRUKTUR • V2.0</span>
+        <span class="data-source">Integrert med Statens vegvesen API / Nasjonal Vegdatabank (NVDB)</span>
         <h1>SALA: Safe-Load Analytics</h1>
-        <p><strong>Strategisk sammendrag for det nasjonale logistikknettverket i Norge</strong></p>
+        <p><strong>Nasjonalt system for biomekanisk risikoprediksjon</strong></p>
+    </div>
+
+    <div class="infobox">
+        "SALA-motoren er teknisk avhengig av sanntidsdata fra Statens vegvesen for å kalibrere risikoindeksen ($R_i$). Uten denne infrastrukturen vil ikke systemet kunne beregne overflatefaktorer ($S_f$) eller topografisk belastning nøyaktig."
     </div>
 
     <section>
-        <h2>1. Nasjonal Visjon og Omfang</h2>
-        <p>SALA har ekspandert fra pilotfasen i Larvik til å bli et landsdekkende system for <strong>biomekanisk risikostyring</strong>. Systemet overvåker nå hele det norske veinettet, med spesielt fokus på kritiske logistikkorridorer (E6, E18, E39) og krevende fjelloverganger.</p>
-    </section>
-
-    <div class="grid">
-        <div class="card">
-            <h3>Landsdekkende Telemetri</h3>
-            <ul>
-                <li><strong>Topografisk integrasjon:</strong> Algoritmer som justerer $R_i$ basert på stigningsgrad i norske fjellheimen.</li>
-                <li><strong>Meteorologisk sanntid:</strong> Kobling mot nasjonale værstasjoner for dynamisk beregning av friksjon ($S_f$).</li>
-                <li><strong>Arktisk Standard:</strong> Spesialtilpassede terskelverdier for operasjoner i Nord-Norge og under ekstreme vinterforhold.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h3>Nasjonal Regulatorisk Hub</h3>
-            <ul>
-                <li><strong>AML § 4-4 (Nasjonalt):</strong> Standardisert digital overvåking for HMS-samsvar på tvers av alle fylker.</li>
-                <li><strong>Statens vegvesen-samhandling:</strong> Integrasjon av veidata for proaktiv risikovarsling før kritiske veipartier.</li>
-                <li><strong>Sentralisert revisjon:</strong> Automatiserte rapporter klargjort for nasjonale tilsyn fra Arbeidstilsynet.</li>
-            </ul>
-        </div>
-    </div>
-
-    <section>
-        <h2>2. Operasjonelle Moduler (Nasjonalt Nivå)</h2>
-        <ul>
-            <li><strong>Nasjonalt Kontrollpanel:</strong> Oversikt over flåterisiko fordelt på regioner (Sør, Vest, Midt, Nord).</li>
-            <li><strong>Fjellovergang-protokoll:</strong> Aktiverer sensorer for høyt dreiemoment og torsjonsbelastning i korsryggen ved kjøring i bratt terreng.</li>
-            <li><strong>Kyst- og Vinterlogistikk:</strong> Justerer stabilitetsfaktorer basert på vindstyrke og varierende veidekke (is/salt/slaps).</li>
-            <li><strong>Sjåfør-app (Nasjonalt):</strong> Flerspråklig støtte med lokasjonsbaserte sikkerhetsvarsler for hele Norge.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>3. Strategisk Implementering</h2>
-        <p>Ved å bruke data fra hele det nasjonale veinettet, kan SALA nå forutsi tretthet og biomekanisk svikt før sjåføren beveger seg inn i risikofylte områder. Dette sikrer at <strong>Mekanisk Mandat</strong> håndheves uniformt fra Oslo til Kirkenes.</p>
-    </section>
-
-    <section>
-        <h2>4. Arkivoversikt (V2.0)</h2>
+        <h2>1. Datadrevet Integrasjon</h2>
+        <p>SALA prosesserer eksterne datasett fra det nasjonale veinettet for å beskytte logistikkpersonell. Systemet henter kritiske parametere direkte fra offentlig infrastruktur:</p>
         <div class="grid">
-            <div>
-                <strong>Systemgrensesnitt:</strong>
+            <div class="card">
+                <strong>Statens vegvesen (NVDB):</strong>
                 <ul>
-                    <li><code>company_no.html</code> (Nasjonal Ledelsesportal)</li>
-                    <li><code>index.html</code> (Global Inngangsport)</li>
+                    <li>Geometriske veidata (stigningsgrad og kurvatur).</li>
+                    <li>Vær- og føreforhold fra vegstasjoner (RWIS).</li>
+                    <li>Trafikkflyt og sanntidshendelser.</li>
                 </ul>
             </div>
-            <div>
-                <strong>Dokumentasjon:</strong>
+            <div class="card">
+                <strong>SALA Analyse:</strong>
                 <ul>
-                    <li><code>summary_no.html</code> (Dette dokumentet - Nasjonal V2)</li>
-                    <li><code>glossary_no.html</code> (Nasjonal Hovedordliste)</li>
-                    <li><code>technical_expansion.html</code> (Topografiske spesifikasjoner)</li>
+                    <li>Beregning av L5/S1-kompresjon basert på veiprofil.</li>
+                    <li>Justering av utmattelseskoeffisient ($\Delta f$) ved krevende fjelloverganger.</li>
+                    <li>Aktivering av Mekanisk Mandat ved lav friksjon (CoF).</li>
                 </ul>
             </div>
         </div>
+    </section>
+
+    <section>
+        <h2>2. Nasjonal Dekning</h2>
+        <p>Ved å koble seg til de nasjonale datasettene, dekker SALA nå alle hovedveier i Norge. Dette muliggjør en sømløs overgang mellom ulike klimasoner og topografier, fra flate korridorer på Østlandet til de bratte fjordene på Vestlandet.</p>
+    </section>
+
+    <section>
+        <h2>3. Samsvar og Rapportering</h2>
+        <p>SALA bruker disse offisielle dataene til å generere juridisk bindende logger for <strong>Arbeidstilsynet</strong>. Dette sikrer at bedriften overholder <strong>Arbeidsmiljøloven (AML)</strong> ved å dokumentere at arbeidet er tilpasset de faktiske fysiske forholdene på veien.</p>
     </section>
 
     <div class="footer">
-        SALA Safe-Load Analytics • Nasjonal Logistikkstøtte • © 2026<br>
-        Sertifisert i henhold til norske HMS-standarder og internasjonale biomekaniske krav.
+        SALA v2.0 • Avhengig av Nasjonal Vegdatabank-infrastruktur • © 2026
     </div>
 </div>
 
