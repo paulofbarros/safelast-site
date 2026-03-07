@@ -2,27 +2,41 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <title>Teknisk Notat: 37,5t uke • SALA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teknisk Notat: 37,5t uke • SALA-037-NO</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; background: #f4f7f6; }
-        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #002b5c; }
-        h1 { color: #002b5c; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 10px; }
-        .auth-badge { background: #eef2f7; color: #002b5c; padding: 5px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; float: right; border: 1px solid #002b5c; text-transform: uppercase; }
-        .formula-box { background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; border: 1px dashed #ccc; }
-        .footer { margin-top: 30px; font-size: 0.8rem; color: #777; border-top: 1px solid #eee; padding-top: 20px; display: flex; justify-content: space-between; }
-        .confidential-tag { color: #dc3545; font-weight: bold; text-transform: uppercase; }
+        /* CORPORATE WHITE THEME */
+        body { background: #ffffff; color: #1a1a1a; font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: 20px auto; background: #ffffff; padding: 50px; border-radius: 8px; border: 1px solid #e1e4e8; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        
+        /* Badges & Headers */
+        .auth-badge { float: right; background: #f6f8fa; color: #0056b3; padding: 5px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; border: 1px solid #d1d5da; text-transform: uppercase; }
+        h1 { color: #000; font-size: 1.8rem; font-weight: 800; margin-bottom: 5px; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        .subject-line { color: #586069; font-size: 1rem; margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+
+        /* Typography */
+        h3 { color: #002b5c; font-size: 1.1rem; margin-top: 30px; text-transform: uppercase; letter-spacing: 0.5px; }
+        p, li { color: #24292e; font-size: 1rem; text-align: justify; }
+        
+        /* Formula Box */
+        .formula-box { background: #f8f9fa; padding: 25px; border-radius: 6px; text-align: center; margin: 25px 0; border: 1px solid #d1d5da; font-size: 1.2rem; }
+
+        /* Footer */
+        .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #eaecef; display: flex; justify-content: space-between; font-size: 0.8rem; color: #6a737d; }
+        .confidential-tag { color: #d73a49; font-weight: bold; text-transform: uppercase; }
+        .back-link { display: inline-block; margin-top: 20px; color: #0056b3; text-decoration: none; font-weight: 600; font-size: 0.85rem; }
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <div class="card">
+    <div class="container">
         <span class="auth-badge">Autentisert Sesjon</span>
-        <h1>Teknisk Notat: SALA-037</h1>
-        <p><strong>Emne:</strong> Integrasjon av 37,5 timers arbeidsuke i risikomodeller.</p>
+        <h1>Teknisk Notat: SALA-037-NO</h1>
+        <p class="subject-line"><strong>Emne:</strong> Integrasjon av 37,5 timers arbeidsuke i risikomodeller.</p>
         
         <h3>1. Bakgrunn</h3>
-        <p>I henhold til norske tariffavtaler er standard arbeidsuke 37,5 timer. SALA-algoritmen beregner kumulativ tretthet (\(F_i\)) basert på denne tidsrammen for å sikre fullt samsvar med Arbeidsmiljøloven.</p>
+        <p>I henhold til norske tariffavtaler er standard arbeidsuke 37,5 timer. SALA-algoritmen beregner kumulativ tretthet ($F_i$) basert på denne tidsrammen for å sikre fullt samsvar med Arbeidsmiljøloven.</p>
 
         <h3>2. Den biomekaniske algoritmen</h3>
         <p>For å beregne risikoeksponering ved slutten av et skift, benytter systemet følgende justeringsfaktor for L5/S1-regionen:</p>
@@ -30,18 +44,19 @@
         <div class="formula-box">
             $$Ri_{final} = Ri_{base} \times \left( 1 + \left( \frac{t}{37.5} \right) \times \Delta f \right)$$
         </div>
-        <p>Hvor <strong>t</strong> er antall timer arbeidet, og <strong>\(\Delta f\)</strong> er utmattelseskoeffisienten.</p>
+        <p>Hvor <strong>t</strong> er antall timer arbeidet, og <strong>$\Delta f$</strong> er utmattelseskoeffisienten.</p>
 
         <h3>3. Operasjonelle grenser</h3>
         <ul>
-            <li><strong>Mekanisk assistanse:</strong> Obligatorisk etter 6 timer dersom \(R_i > 75\%\).</li>
-            <li><strong>Restitusjon:</strong> Minimum 11 timer mellom skift (lovpålagt minimumshvile).</li>
+            <li><strong>Mekanisk assistanse:</strong> Obligatorisk etter 6 timer dersom $R_i > 75\%$.</li>
+            <li><strong>Restitusjon:</strong> Minimum 11 timer mellom skift (lovpålagt minimumshvile i Norge).</li>
         </ul>
 
         <div class="footer">
             <span>&copy; 2026 Safe-Load Analytics</span>
             <span class="confidential-tag">Kun for intern bruk / Konfidensielt</span>
         </div>
+        <a href="company_no.html" class="back-link">← Tilbake til Portalen</a>
     </div>
 </body>
 </html>
