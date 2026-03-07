@@ -24,13 +24,13 @@
             padding: 10px;
         }
 
-        /* Utgangsknapp på toppen */
         .nav-header {
             max-width: 900px;
             margin: 0 auto 10px auto;
             display: flex;
             justify-content: flex-start;
         }
+
         .btn-exit {
             text-decoration: none;
             color: var(--text-secondary);
@@ -41,6 +41,7 @@
             border-radius: 20px;
             transition: all 0.2s;
         }
+
         .btn-exit:hover { background: var(--card-bg); color: var(--accent-blue); }
 
         .dashboard-container {
@@ -123,17 +124,6 @@
 
         .alert-recommendation { font-size: 1rem; font-weight: 700; margin-top: 5px; }
 
-        /* NYTT: SALA Live Telemetry Styles */
-        .live-telemetry-dock {
-            background: #0a0e14;
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid #333;
-            color: #fff;
-            margin: 40px 0 20px 0;
-            text-align: left;
-        }
-
         footer { 
             text-align: center; 
             font-size: 0.7rem; 
@@ -194,54 +184,13 @@
             <p class="alert-recommendation" id="rec-text">Venter på data...</p>
         </section>
 
-        <section class="live-telemetry-dock">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="margin: 0; font-size: 0.85rem; color: #007bff; text-transform: uppercase; letter-spacing: 2px;">
-                    📡 SALA Sanntids-telemetri (Feltvisning)
-                </h2>
-                <span style="font-size: 0.65rem; color: #28a745; font-weight: bold; display: flex; align-items: center; gap: 5px;">
-                    <span style="width: 8px; height: 8px; background: #28a745; border-radius: 50%; display: inline-block;"></span>
-                    MOTOR AKTIV
-                </span>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; align-items: center;">
-                <div style="text-align: center; border-right: 1px solid #222; padding-right: 20px;">
-                    <div style="width: 100px; height: 100px; border: 8px solid #222; border-top-color: #dc3545; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                        <span style="font-size: 1.5rem; font-weight: 900; color: #dc3545;" id="live-risk-val">82.4%</span>
-                    </div>
-                    <p style="font-size: 0.6rem; margin-top: 10px; color: #888;">L5/S1 EKSPONERING</p>
-                </div>
-
-                <div>
-                    <p style="font-size: 0.75rem; color: #ccc; margin: 0;"><strong>Aktiv Sjåfør:</strong> Driver (#PB-1092)</p>
-                    <p style="font-size: 0.7rem; color: #777; line-height: 1.3; margin: 10px 0;">
-                        Biomekanisk metning simulert for en 37,5t standarduke. Gjeldende stressfaktor: 1.8x (Overflatefriksjon).
-                    </p>
-                    <div style="background: rgba(0,123,255,0.1); padding: 8px; border-radius: 4px; border-left: 3px solid #007bff; font-size: 0.7rem; color: #007bff;">
-                        <strong>AI Anbefaling:</strong> Prioriter mekanisk assistanse umiddelbart.
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <footer>
-            <p><b>SALA PROSJEKT</b> | Biomekanisk Tilpasning<br>
-            Larvik 2026</p>
-        </footer>
+    <p><b>SALA Safe-Load Analytics</b> | Biomekanisk Risiko<br>
+    Larvik 2026</p>
+</footer>
     </div>
 
     <script>
-        function updateLiveTelemetry() {
-            const liveVal = document.getElementById('live-risk-val');
-            if (liveVal) {
-                const base = 82.4;
-                const flutter = (Math.random() * 0.4) - 0.2;
-                liveVal.innerText = (base + flutter).toFixed(1) + "%";
-            }
-        }
-        setInterval(updateLiveTelemetry, 2500);
-
         async function calculateSALA() {
             const h = document.getElementById('hours').value;
             const t = document.getElementById('temp').value;
