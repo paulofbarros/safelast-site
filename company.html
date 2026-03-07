@@ -153,7 +153,7 @@
         }
         .lang-link:hover { background: var(--accent-blue); color: #fff; }
 
-        /* NOVOS ESTILOS PARA SETTINGS */
+        /* CONFIG SETTINGS */
         .config-group { margin-bottom: 25px; }
         .config-label { display: block; font-weight: bold; margin-bottom: 8px; color: var(--corp-blue); font-size: 0.9rem; }
         .config-select { width: 100%; max-width: 400px; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-family: inherit; }
@@ -195,7 +195,7 @@
                     <thead><tr><th>Driver ID</th><th>Current Location</th><th>Risk Index (Ri)</th></tr></thead>
                     <tbody>
                         <tr><td>#X-2245</td><td>📍 E18 - Telemark Area</td><td><span class="status-badge at-risk">82% CRITICAL</span></td></tr>
-                        <tr><td>#PB-1092</td><td>📍 Larvik Container Terminal</td><td><span class="status-badge safe">12% SAFE</span></td></tr>
+                        <tr><td>#PB-1092</td><td>📍 Larvik Port Hub</td><td><span class="status-badge safe">12% SAFE</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -248,9 +248,18 @@
 
     <div id="manual" class="view-section">
         <h1 style="color: var(--corp-blue);">Knowledge Base & Documentation</h1>
-        <p>Access operational manuals, safety protocols, and system guidelines.</p>
+        <p>Access operational manuals, safety protocols, and biomechanical system guidelines.</p>
         
         <div class="manual-grid">
+            <div class="manual-card">
+                <h4>🩺 Biomechanical Risk Protocol</h4>
+                <p>Technical framework for mitigating L5/S1 spinal stress and cumulative WBV fatigue compliance.</p>
+                <div class="manual-langs">
+                    <a href="biomechanical_risk_protocol.html" target="_blank" class="lang-link">ENGLISH</a>
+                    <a href="biomechanical_risk_protocol_no.html" target="_blank" class="lang-link">NORSK</a>
+                </div>
+            </div>
+
             <div class="manual-card">
                 <h4>📘 Driver's Manual</h4>
                 <p>Full guide on operating the mobile app and responding to real-time risk alerts during shifts.</p>
@@ -259,22 +268,7 @@
                     <a href="driver_manual_no.html" target="_blank" class="lang-link">NORSK</a>
                 </div>
             </div>
-            <div class="manual-card">
-                <h4>📊 Manager Dashboard Guide</h4>
-                <p>Instructions for interpreting the Risk Index (Ri) and managing fleet compliance.</p>
-                <div class="manual-langs">
-                    <a href="manager_guide.html" target="_blank" class="lang-link">ENGLISH</a>
-                    <a href="manager_guide_no.html" target="_blank" class="lang-link">NORSK</a>
-                </div>
-            </div>
-            <div class="manual-card">
-                <h4>📐 Technical Note: 37.5h Week</h4>
-                <p>Algorithmic integration of the Norwegian statutory limits and cumulative fatigue multipliers.</p>
-                <div class="manual-langs">
-                    <a href="technical_note_375.html" target="_blank" class="lang-link">ENGLISH</a>
-                    <a href="technical_note_375_no.html" target="_blank" class="lang-link">NORSK</a>
-                </div>
-            </div>
+
             <div class="manual-card">
                 <h4>❄️ Winter Operations Protocol</h4>
                 <p>Specific safety procedures for operations on icy or snowy surfaces within the Nordic region.</p>
@@ -283,6 +277,16 @@
                     <a href="winter_protocol_no.html" target="_blank" class="lang-link">NORSK</a>
                 </div>
             </div>
+
+            <div class="manual-card">
+                <h4>📐 Technical Note: 37.5h Week</h4>
+                <p>Algorithmic integration of the Norwegian statutory limits and cumulative fatigue multipliers.</p>
+                <div class="manual-langs">
+                    <a href="technical_note_375.html" target="_blank" class="lang-link">ENGLISH</a>
+                    <a href="technical_note_375_no.html" target="_blank" class="lang-link">NORSK</a>
+                </div>
+            </div>
+            
             <div class="manual-card">
                 <h4>⚖️ HSE & Legal Documentation</h4>
                 <p>Technical data for Arbeidstilsynet audits and Safety Delegate (Verneombud) reviews.</p>
@@ -305,12 +309,8 @@
             <div style="background: #fff9e6; border-left: 4px solid #ffcc00; padding: 15px; margin-bottom: 25px; font-size: 0.85rem;">
                 <strong style="color: #856404;">Technical Note: Biomechanical Thresholds</strong><br>
                 The $R_i$ threshold defines the transition from <em>manual handling</em> to <em>mechanical-only operations</em>. 
-                According to SALA predictive models, an index above <strong>85%</strong> indicates that musculoskeletal stabilizers (L5/S1 region) 
-                can no longer compensate for surface instability ($S_f$) and neuromuscular fatigue ($F_i$). 
-                <strong>Mandatory mechanical assistance</strong> is triggered to maintain compliance with <em>Arbeidsmiljøloven § 4-4</em>.
+                Mandatory mechanical assistance is triggered to maintain compliance with <em>Arbeidsmiljøloven § 4-4</em>.
             </div>
-
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
 
             <div class="config-group">
                 <label class="config-label">Regional Alert Sensitivity</label>
@@ -319,7 +319,6 @@
                     <option value="arctic">Arctic Protocol (Northern Norway)</option>
                     <option value="mountain">Mountain Pass (High Torque Focus)</option>
                 </select>
-                <span class="config-help">*Adjusts the $S_f$ multiplier based on regional environmental friction data.</span>
             </div>
 
             <div class="config-group">
@@ -328,15 +327,8 @@
                     <input type="range" min="50" max="95" value="85" id="thresholdRange" style="flex-grow: 1; max-width: 400px;">
                     <span id="thresholdValue" style="font-weight: 800; color: #e67e22; font-size: 1.2rem;">85%</span>
                 </div>
-                
                 <div id="thresholdGuide" style="background: #f8f9fa; border: 1px dashed #ccc; padding: 12px; border-radius: 8px; font-size: 0.8rem; color: #555;">
-                    <div id="guideText">
-                        <strong>Current Policy:</strong> Balanced (Standard Industry Safety)
-                    </div>
-                    <ul style="margin: 8px 0 0 0; padding-left: 18px; line-height: 1.4;">
-                        <li><span style="color: #28a745; font-weight: bold;">Lowering (e.g. 75%):</span> Increases safety margins. Use during <strong>extreme winter</strong> or for elderly staff.</li>
-                        <li><span style="color: #dc3545; font-weight: bold;">Raising (e.g. 90%):</span> High performance mode. Use only for <strong>light cargo</strong> or climate-controlled docks.</li>
-                    </ul>
+                    <div id="guideText"><strong>Current Policy:</strong> Balanced (Standard Industry Safety)</div>
                 </div>
             </div>
 
@@ -372,8 +364,8 @@
         const target = document.getElementById(sectionId);
         if(target) target.classList.add('active');
         
-        if (window.event && window.event.currentTarget) {
-            window.event.currentTarget.classList.add('active');
+        if (event && event.currentTarget) {
+            event.currentTarget.classList.add('active');
         }
 
         if (sectionId === 'map') {
@@ -384,7 +376,6 @@
         }
     }
 
-    // Lógica Dinâmica para o Slider de Threshold (DSS)
     const range = document.getElementById('thresholdRange');
     const valueDisplay = document.getElementById('thresholdValue');
     const guideText = document.getElementById('guideText');
@@ -393,16 +384,15 @@
         range.addEventListener('input', () => {
             const val = range.value;
             valueDisplay.innerText = val + '%';
-            
             if(val < 75) {
-                guideText.innerHTML = "<strong>Policy: Maximum Prevention.</strong> High operational overhead, minimal injury risk.";
-                valueDisplay.style.color = "#28a745"; // Verde
+                guideText.innerHTML = "<strong>Policy: Maximum Prevention.</strong>";
+                valueDisplay.style.color = "#28a745";
             } else if(val >= 75 && val <= 85) {
-                guideText.innerHTML = "<strong>Policy: Balanced.</strong> Standard industry safety for Norwegian logistics.";
-                valueDisplay.style.color = "#e67e22"; // Laranja
+                guideText.innerHTML = "<strong>Policy: Balanced.</strong> Standard industry safety.";
+                valueDisplay.style.color = "#e67e22";
             } else {
-                guideText.innerHTML = "<strong>Policy: High Performance.</strong> Critical risk of L5/S1 failure. Requires expert supervision.";
-                valueDisplay.style.color = "#dc3545"; // Vermelho
+                guideText.innerHTML = "<strong>Policy: High Performance.</strong> Critical risk level.";
+                valueDisplay.style.color = "#dc3545";
             }
         });
     }
