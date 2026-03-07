@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biomekanisk Risikoprotokoll • Teknisk Dokumentasjon</title>
+    <style>
+        /* CLINICAL WHITE THEME */
+        body { background: #ffffff; color: #1a1a1a; font-family: 'Segoe UI', 'Roboto', helvetica, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 850px; margin: 20px auto; background: #ffffff; padding: 50px; border-radius: 8px; border: 1px solid #e1e4e8; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        
+        /* Language Switcher - Clean Style */
+        .lang-switch { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 50px; border-bottom: 1px solid #eaecef; padding-bottom: 15px; }
+        .lang-btn { background: #f6f8fa; color: #586069; border: 1px solid #d1d5da; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; transition: all 0.2s; }
+        .lang-btn.active { color: #ffffff; border-color: #0056b3; background: #007bff; }
+
+        /* Typography */
+        h1 { color: #000000; font-size: 1.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 10px; }
+        .doc-subtitle { color: #6a737d; font-size: 1rem; font-weight: 400; margin-top: 0; margin-bottom: 40px; }
+        
+        h2 { color: #0056b3; font-size: 1.1rem; margin-top: 40px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #007bff; padding-bottom: 8px; display: inline-block; }
+        p, li { color: #24292e; font-size: 1rem; text-align: justify; margin-bottom: 15px; }
+        ul { padding-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* Formula Card - Clean & Highlighted */
+        .formula-card { background: #f6f8fa; padding: 30px; border-radius: 6px; margin: 30px 0; border: 1px solid #d1d5da; display: flex; align-items: center; justify-content: center; }
+        .formula-text { font-family: 'Cambria Math', 'Times New Roman', serif; font-size: 1.5rem; color: #0056b3; font-style: italic; }
+        
+        /* ISO Badge - Compliance Green */
+        .iso-badge { display: inline-block; background: #28a745; color: white; padding: 5px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 0.5px; }
+        
+        /* Helpers */
+        .highlight { color: #007bff; font-weight: 600; }
+        .lang-section { display: none; }
+        .lang-section.active { display: block; }
+        
+        /* Footer Navigation */
+        .footer-nav { margin-top: 60px; padding-top: 30px; border-top: 1px solid #eaecef; }
+        .back-link { color: #586069; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 5px; transition: 0.2s; text-transform: uppercase; }
+        .back-link:hover { color: #007bff; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn" onclick="location.href='biomechanical_risk_protocol.html'">EN • TECHNICAL</button>
+        <button class="lang-btn active">NO • TEKNISK</button>
+    </div>
+
+    <div class="lang-section active">
+        <div class="iso-badge">ISO 2631-1 SAMSVAR</div>
+        <h1>Biomekanisk Risikoprotokoll</h1>
+        <p class="doc-subtitle">Operasjonelt rammeverk for forebygging av muskel- og skjelettskader hos logistikkpersonell</p>
+        
+        <p>Rammeverket <span class="highlight">SALA (Safe-Load Analytics)</span> er en deterministisk modell designet for å redusere biomekanisk slitasje. Den krysstabulere miljødata med individuelle antropometriske variabler (alder/vekt) for å etablere en sikker mekanisk arbeidsramme for den enkelte ansatte.</p>
+
+        <h2>1. Kinetisk Tretthet & WBV-korrelasjon</h2>
+        <p>I samsvar med ISO 2631-1 standarder, vil langvarig eksponering for <span class="highlight">helkroppsvibrasjoner (WBV)</span> under transport indusere mikrotraumer i ryggradens bløtvev. Denne protokollen kvantifiserer den metabolske tilstanden før belastning, noe som sikrer at manuell håndtering etter kjøring ikke overstiger korsryggens strukturelle toleranse.</p>
+
+        <div class="formula-card">
+            <span class="formula-text">R = (T_exp × WBV_λ) / (C_bio × Age_f)</span>
+        </div>
+
+        <h2>2. Morfologisk Kapasitetsskalering</h2>
+        <p>Systemet benytter en algoritme for <span class="highlight">dynamisk masseproporsjonalitet</span>. Den beregner den tillatte belastningsterskelen ved å faktorisere operatørens nåværende muskelelastisitet mot lastens treghetskraft. Dette forhindrer akutt kompresjon av virvelskiver (L5/S1).</p>
+
+        <h2>3. HMS-målsetninger</h2>
+        <ul>
+            <li><strong>Risikodemping:</strong> Sanntidsvarsler basert på akkumulert biomekanisk stress (aldersjustert).</li>
+            <li><strong>Termisk Kompensasjon:</strong> Justering av restitusjonstider basert på omgivelsestemperatur og termoreguleringsbehov.</li>
+            <li><strong>Dataintegritet:</strong> Automatisert logging for sikkerhetsrevisjon og samsvarsvurdering i henhold til Arbeidstilsynets krav.</li>
+        </ul>
+    </div>
+
+    <div class="footer-nav">
+        <a href="company_no.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.75.75 0 0 1 .018 1.042L4.81 7.5h6.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06Z"></path></svg>
+            TILBAKE TIL BEDRIFTSPORTALEN
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
