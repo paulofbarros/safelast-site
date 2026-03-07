@@ -71,6 +71,9 @@
 
             <label>DRIVER WEIGHT (KG)</label>
             <input type="number" id="driver_weight" value="80">
+
+            <label>DRIVER AGE (YEARS)</label>
+            <input type="number" id="age" value="35">
             
             <label id="label-temp">DETECTION TEMP (°C)</label>
             <input type="number" id="temp" value="0">
@@ -91,9 +94,8 @@
         <button class="btn-scan" id="scan-btn" onclick="startScanner()">[ ] SCAN PACKAGE</button>
         <button class="btn-reset" onclick="resetCounters()">RESTART DATA</button>
 
-        <div class="footer">
-            <h3>SALA Safe-Load Analytics</b> | Biomechanical Risk Research<br>
- </h3>
+        <div class="scientific-footer">
+            <h3>SALA Safe-Load Analytics | Biomechanical Risk Research</h3>
             <p>The risk index calculates <span class="keyword">Individual Biomechanical Capacity</span>, adjusting physical load based on the <span class="keyword">Body Mass Percentage Rule</span>.</p>
             <p>Weighted by the <span class="keyword">Proportionality Factor</span> between inertial mass and payload.</p>
             <p id="ai-brain" style="font-size: 0.6rem; color: #007bff;">AI ENGINE: ACTIVE & LEARNING</p>
@@ -106,7 +108,6 @@
     </div>
 
     <script type="module">
-        // MUDANÇA INOVADORA: CONEXÃO COM BANCO DE PESQUISA (DRA. NATALIA)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
@@ -122,7 +123,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Função global para salvar dados da tese
         window.logTeseData = async (data) => {
             try {
                 await addDoc(collection(db, "tese_research_logs"), {
@@ -215,6 +215,7 @@
         async function updateDriverView() {
             const h = document.getElementById('hours').value;
             const dw = document.getElementById('driver_weight').value;
+            const age = document.getElementById('age').value; 
             const t = document.getElementById('temp').value;
             const w = document.getElementById('weight').value;
             const ph = document.getElementById('packages_heavy').value;
@@ -230,6 +231,7 @@
                     body: JSON.stringify({ 
                         "driving_hours": parseFloat(h), 
                         "driver_weight": parseFloat(dw),
+                        "age": parseInt(age),
                         "temp": parseFloat(t),
                         "total_weight": parseFloat(w),
                         "heavy_packages": parseInt(ph),
@@ -242,13 +244,14 @@
                 const risk = data.risk_index;
                 riskValueText.innerText = risk + "%";
 
-                // MUDANÇA INOVADORA: LOG AUTOMÁTICO PARA A TESE (DRA. NATALIA)
                 if (window.logTeseData) {
                     window.logTeseData({
                         hours: h,
                         temp: t,
                         cargo: w,
-                        risk: risk
+                        age: age,
+                        risk: risk,
+                        language: "en"
                     });
                 }
 
