@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biomechanical Risk Protocol • Technical Documentation</title>
+    <style>
+        /* CLINICAL WHITE THEME */
+        body { background: #ffffff; color: #1a1a1a; font-family: 'Segoe UI', 'Roboto', helvetica, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 850px; margin: 20px auto; background: #ffffff; padding: 50px; border-radius: 8px; border: 1px solid #e1e4e8; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        
+        /* Language Switcher - Clean Style */
+        .lang-switch { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 50px; border-bottom: 1px solid #eaecef; padding-bottom: 15px; }
+        .lang-btn { background: #f6f8fa; color: #586069; border: 1px solid #d1d5da; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; transition: all 0.2s; }
+        .lang-btn:hover { background: #e1e4e8; }
+        .lang-btn.active { color: #ffffff; border-color: #0056b3; background: #007bff; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); }
+
+        /* Typography */
+        h1 { color: #000000; font-size: 1.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 10px; }
+        .doc-subtitle { color: #6a737d; font-size: 1rem; font-weight: 400; margin-top: 0; margin-bottom: 40px; }
+        
+        h2 { color: #0056b3; font-size: 1.1rem; margin-top: 40px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #007bff; padding-bottom: 8px; display: inline-block; }
+        p, li { color: #24292e; font-size: 1rem; text-align: justify; margin-bottom: 15px; }
+        ul { padding-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* Formula Card - Clean & Highlighted */
+        .formula-card { background: #f6f8fa; padding: 30px; border-radius: 6px; margin: 30px 0; border: 1px solid #d1d5da; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+        .formula-text { font-family: 'Cambria Math', 'Times New Roman', serif; font-size: 1.5rem; color: #0056b3; font-style: italic; }
+        
+        /* ISO Badge - Medical Green */
+        .iso-badge { display: inline-block; background: #28a745; color: white; padding: 5px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 0.5px; }
+        
+        /* Helpers */
+        .highlight { color: #007bff; font-weight: 600; }
+        .lang-section { display: none; }
+        .lang-section.active { display: block; }
+        
+        /* Footer Navigation */
+        .footer-nav { margin-top: 60px; padding-top: 30px; border-top: 1px solid #eaecef; }
+        .back-link { color: #586069; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
+        .back-link:hover { color: #007bff; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">EN • TECHNICAL</button>
+        <button class="lang-btn" onclick="setLang('no')">NO • TEKNISK</button>
+    </div>
+
+    <div id="en-content" class="lang-section active">
+        <div class="iso-badge">ISO 2631-1 COMPLIANT</div>
+        <h1>Biomechanical Risk Protocol</h1>
+        <p class="doc-subtitle">Operational Framework for Preventing Musculoskeletal Injury in Logistics Personnel</p>
+        
+        <p>The <span class="highlight">SALA (Safe-Load Analytics)</span> operational framework is a deterministic model designed to mitigate musculoskeletal degradation. It cross-references environmental data with individualized anthropometric variables (Age/Weight) to establish a safe mechanical work envelope.</p>
+
+        <h2>1. Kinetic Fatigue & WBV Correlation</h2>
+        <p>In accordance with ISO 2631-1 standards, prolonged exposure to <span class="highlight">Whole-Body Vibration (WBV)</span> during transport induces micro-trauma in spinal soft tissues. This protocol quantifies the pre-load metabolic state, ensuring post-transit manual handling does not exceed lumbar structural tolerance.</p>
+
+        <div class="formula-card">
+            <span class="formula-text">R = (T_exp × WBV_λ) / (C_bio × Age_f)</span>
+        </div>
+
+        <h2>2. Morphological Capacity Scaling</h2>
+        <p>The system utilizes a <span class="highlight">Dynamic Mass Proportionality</span> algorithm. It calculates the permissible load threshold by factoring the operator's current muscular elasticity coefficient against the inertial force of the payload, preventing acute disc compression.</p>
+
+        <h2>3. Occupational Health Objectives</h2>
+        <ul>
+            <li><strong>Risk Mitigation:</strong> Real-time alerts based on cumulative biomechanical stress (Age factored).</li>
+            <li><strong>Thermal Compensation:</strong> Adjustment of rest intervals based on ambient thermoregulatory demands.</li>
+            <li><strong>Data Integrity:</strong> Automated logging for longitudinal research and safety auditing (Dra. Natalia Protocol).</li>
+        </ul>
+    </div>
+
+    <div id="no-content" class="lang-section">
+        <div class="iso-badge">ISO 2631-1 SAMSVAR</div>
+        <h1>Biomekanisk Risikoprotokoll</h1>
+        <p class="doc-subtitle">Operasjonelt rammeverk for forebygging av muskel- og skjelettskader hos logistikkpersonell</p>
+        
+        <p><span class="highlight">SALA (Safe-Load Analytics)</span>-rammeverket er en deterministisk modell designet for å redusere muskel- og skjelettlidelser. Den fungerer ved å krysstabulere miljødata med individuelle antropometriske variabler (alder/vekt) for å etablere en sikker mekanisk arbeidsramme.</p>
+
+        <h2>1. Kinetisk Tretthet & WBV-korrelasjon</h2>
+        <p>I samsvar med ISO 2631-1 standarder, induserer langvarig eksponering for <span class="highlight">helkroppsvibrasjoner (WBV)</span> mikrotraumer i ryggradens bløtvev. Denne protokollen kvantifiserer den metabolske tilstanden før belastning, noe som sikrer at manuell håndtering etter transport ikke overstiger korsryggens strukturelle toleranse.</p>
+
+        <div class="formula-card">
+            <span class="formula-text">R = (T_exp × WBV_λ) / (C_bio × Age_f)</span>
+        </div>
+
+        <h2>2. Morfologisk Kapasitetsskalering</h2>
+        <p>Systemet benytter en algoritme for <span class="highlight">dynamisk masseproporsjonalitet</span>. Den beregner den tillatte belastningsterskelen ved å faktorisere operatørens aldersrelaterte muskelelastisitet mot lastens treghetskraft, for å forhindre akutt skivekompresjon.</p>
+
+        <h2>3. HMS-målsetninger</h2>
+        <ul>
+            <li><strong>Risikodemping:</strong> Sanntidsvarsler basert på akkumulert biomekanisk stress (inkludert aldersfaktor).</li>
+            <li><strong>Termisk Kompensasjon:</strong> Justering av hvileintervaller basert på omgivelsestemperatur og termoreguleringsbehov.</li>
+            <li><strong>Dataintegritet:</strong> Automatisert logging for langsiktig forskning og sikkerhetsrevisjon (Dra. Natalia-protokoll).</li>
+        </ul>
+    </div>
+
+    <div class="footer-nav">
+        <a href="company_portal.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.75.75 0 0 1 .018 1.042L4.81 7.5h6.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06Z"></path></svg>
+            DOCUMENTATION INDEX
+        </a>
+    </div>
+</div>
+
+<script>
+    function setLang(lang) {
+        // Toggle Buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(btn => btn.innerText.includes(lang.toUpperCase()));
+        if(activeBtn) activeBtn.classList.add('active');
+
+        // Toggle Content
+        document.querySelectorAll('.lang-section').forEach(section => section.classList.remove('active'));
+        document.getElementById(lang + '-content').classList.add('active');
+    }
+</script>
+
+</body>
+</html>
