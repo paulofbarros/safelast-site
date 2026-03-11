@@ -8,11 +8,10 @@
     <style>
         :root {
             --bg-color: #ffffff;
-            --card-bg: #f0f7ff;
             --accent-blue-dark: #0056b3;
             --text-primary: #1a1a1a;
-            --border-color: #d1e3f8;
             --btn-black: #1a1a1a;
+            --border-color: #e1e4e8;
         }
 
         body {
@@ -20,83 +19,81 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             margin: 0;
-            line-height: 1.6;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 500px;
             width: 100%;
-            padding: 40px 20px;
+            padding: 20px;
             text-align: center;
         }
 
-        /* Estilo das Bandeiras (Mantido) */
+        /* Estilo das Bandeiras - Exatamente como o Index original */
         .lang-nav-central { 
             display: flex; justify-content: center; gap: 25px; margin-bottom: 30px;
         }
         
         .lang-nav-central span { 
-            cursor: pointer; 
-            width: 45px; 
-            opacity: 0.3; 
-            transition: all 0.3s ease;
-            filter: grayscale(100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
+            cursor: pointer; width: 45px; opacity: 0.3; 
+            transition: all 0.3s ease; filter: grayscale(100%);
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
         }
         
         .lang-nav-central span:after {
-            content: attr(data-label);
-            font-size: 0.6rem;
-            font-weight: bold;
-            color: var(--text-primary);
+            content: attr(data-label); font-size: 0.6rem; font-weight: bold; color: var(--text-primary);
         }
 
         .lang-nav-central span.active { 
-            opacity: 1; 
-            transform: scale(1.1); 
-            filter: grayscale(0%);
+            opacity: 1; transform: scale(1.1); filter: grayscale(0%);
         }
 
-        header { border-bottom: 1px solid #eaeaea; padding-bottom: 30px; margin-bottom: 40px; }
-        h1 { font-size: 2.8rem; margin-bottom: 5px; font-weight: 800; letter-spacing: -1px; }
-        .subtitle { font-size: 1.25rem; color: var(--accent-blue-dark); font-weight: 500; }
+        /* Header 1 e 2 */
+        header { border-bottom: 1px solid #eaeaea; padding-bottom: 20px; margin-bottom: 40px; }
+        h1 { font-size: 2.2rem; margin-bottom: 5px; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        .subtitle { font-size: 1rem; color: var(--accent-blue-dark); font-weight: 600; text-transform: none; }
 
-        /* Botões de Navegação */
+        /* Botões em Formato Vertical */
         .nav-portal {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 0 0 50px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
         }
+        
         .nav-button {
-            display: block; text-align: center; padding: 18px;
-            background-color: var(--accent-blue-dark); 
-            color: white !important; 
-            text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+            display: block;
+            text-align: center;
+            padding: 18px;
+            background-color: var(--accent-blue-dark);
+            color: white !important;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .nav-button.driver { background-color: var(--btn-black); }
         .nav-button.secondary { background-color: #f8f9fa; color: #333 !important; border: 1px solid #ddd; }
-        .nav-button:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); filter: brightness(1.1); }
+        .nav-button:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
 
-        section { margin-bottom: 50px; text-align: left; }
-        h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; font-size: 1.5rem; }
-
+        /* Algorithm Box - Única seção técnica mantida */
         .algorithm-box {
-            background-color: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 30px; text-align: center; margin: 20px 0;
+            background-color: #f0f7ff;
+            border: 1px solid #d1e3f8;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
         }
-        .formula { font-size: 2.2rem; color: var(--accent-blue-dark); font-weight: 800; }
+        .formula { font-size: 1.8rem; color: var(--accent-blue-dark); font-weight: 800; margin: 10px 0; }
+        #ai-status { font-size: 0.7rem; font-family: monospace; color: var(--accent-blue-dark); }
 
-        .science-box { background: #f9f9f9; padding: 30px; border-radius: 12px; border: 1px solid #eee; margin-top: 40px; }
-
-        footer { text-align: center; font-size: 0.85rem; border-top: 1px solid #eaeaea; padding-top: 40px; color: #888; margin-top: 60px; }
-
-        @media (max-width: 600px) { .nav-portal { grid-template-columns: 1fr; } }
+        footer { text-align: center; font-size: 0.75rem; color: #888; margin-top: 50px; border-top: 1px solid #eee; padding-top: 20px; }
     </style>
 </head>
 <body>
@@ -112,8 +109,8 @@
         </div>
 
         <header>
-            <h1>SALA • SAFE-LOAD ANALYTICS</h1>
-            <p id="tagline" class="subtitle">Predictive Intelligence for Norwegian Logistics & Transport</p>
+            <h1>SALA • SAFE-LOAD</h1>
+            <p id="tagline" class="subtitle">Predictive Intelligence for Norwegian Logistics</p>
         </header>
 
         <nav class="nav-portal">
@@ -122,63 +119,30 @@
             <a href="https://paulofbarros.github.io/safelast-site/company.html" class="nav-button secondary" id="btn-company">COMPANY ACCESS</a>
         </nav>
 
-        <section>
-            <h2 id="h-overview">Overview</h2>
-            <p id="p-overview">SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).</p>
-        </section>
-
-        <section>
-            <h2 id="h-algorithm">The Core Algorithm (AI Powered)</h2>
-            <div class="algorithm-box">
-                <p id="p-algorithm">Predictive Ergonomic Risk Index:</p>
-                <div class="formula" id="display-formula">Ri = (Sf × Lw) + (Fi × Th)</div>
-                <p id="ai-status" style="font-size:0.7rem; color:var(--accent-blue-dark); margin-top:10px; font-family: monospace;">Neural Network: Active & Learning</p>
-            </div>
-        </section>
-
-        <section class="science-box">
-            <h2 id="h-science" style="color: #0056b3;">The Science Behind SALA</h2>
-            <p id="p-sf"><strong>Biomechanical Surface Factor (Sf):</strong> Operating on compressed snow or ice requires up to 80% more stabilizer muscle activation. We apply a <strong>1.8x multiplier</strong> to account for increased torque on the lumbar region (L5/S1).</p>
-            <p id="p-fi"><strong>Neuromuscular Fatigue (Fi):</strong> Risk scales exponentially after <strong>6h 30m</strong> of active duty. Vibration-induced fatigue leads to delayed motor response.</p>
-            <p id="p-reg"><strong>Regulatory Compliance (Arbeidsmiljøloven § 4-4):</strong> SALA is designed to fulfill the Norwegian Working Environment Act requirements, providing data-driven evidence for the <em>Verneombud</em>.</p>
-        </section>
+        <div class="algorithm-box">
+            <div class="formula">Ri = (Sf × Lw) + (Fi × Th)</div>
+            <p id="ai-status">Neural Network: Active & Learning</p>
+        </div>
 
         <footer>
-            <p>Founded & Developed by: <strong>Paulo Fernando De Barros </strong> | Larvik, Norway</p>
-            <p>&copy; 2026 SALA - Safe-Load Analytics | Biomechanical Risk Research | All rights reserved.</p>
+            <p>Founded & Developed by: <strong>Paulo Fernando De Barros</strong></p>
+            <p>&copy; 2026 SALA - Safe-Load Analytics | All rights reserved.</p>
         </footer>
     </div>
 
     <script>
-        // Sistema de Tradução Simples
         const translations = {
             en: {
                 tagline: "Predictive Intelligence for Norwegian Logistics",
                 driver: "DRIVER APP",
                 dashboard: "LIVE DASHBOARD",
-                company: "COMPANY ACCESS",
-                overviewH: "Overview",
-                overviewP: "SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector.",
-                algorithmH: "The Core Algorithm (AI Powered)",
-                algorithmP: "Predictive Ergonomic Risk Index:",
-                scienceH: "The Science Behind SALA",
-                sfP: "<strong>Biomechanical Surface Factor (Sf):</strong> Operating on compressed snow or ice requires up to 80% more stabilizer muscle activation.",
-                fiP: "<strong>Neuromuscular Fatigue (Fi):</strong> Risk scales exponentially after 6h 30m of active duty.",
-                regP: "<strong>Regulatory Compliance (Arbeidsmiljøloven § 4-4):</strong> SALA is designed to fulfill the Norwegian Working Environment Act requirements."
+                company: "COMPANY ACCESS"
             },
             no: {
-                tagline: "Prediktiv Intelligens for Norsk Logistikk og Transport",
+                tagline: "Prediktiv Intelligens for Norsk Logistikk",
                 driver: "SJÅFØR APP",
                 dashboard: "SANNTIDSDASHBOARD",
-                company: "BEDRIFTSTILGANG",
-                overviewH: "Oversikt",
-                overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren.",
-                algorithmH: "Kjernealgoritmen (AI-drevet)",
-                algorithmP: "Prediktiv ergonomisk risikoindeks:",
-                scienceH: "Vitenskapen bak SALA",
-                sfP: "<strong>Biomekanisk overflatefaktor (Sf):</strong> Arbeid på komprimert snø eller is krever opptil 80% mer aktivering av stabiliseringsmuskulatur.",
-                fiP: "<strong>Nevromuskulær tretthet (Fi):</strong> Risiko øker eksponentielt etter 6t 30m aktiv tjeneste.",
-                regP: "<strong>Samsvar med regelverk (Arbeidsmiljøloven § 4-4):</strong> SALA er utviklet for å oppfylle kravene i arbeidsmiljøloven."
+                company: "BEDRIFTSTILGANG"
             }
         };
 
@@ -191,22 +155,11 @@
             document.getElementById('btn-driver').innerText = data.driver;
             document.getElementById('btn-dashboard').innerText = data.dashboard;
             document.getElementById('btn-company').innerText = data.company;
-            document.getElementById('h-overview').innerText = data.overviewH;
-            document.getElementById('p-overview').innerText = data.overviewP;
-            document.getElementById('h-algorithm').innerText = data.algorithmH;
-            document.getElementById('p-algorithm').innerText = data.algorithmP;
-            document.getElementById('h-science').innerText = data.scienceH;
-            document.getElementById('p-sf').innerHTML = data.sfP;
-            document.getElementById('p-fi').innerHTML = data.fiP;
-            document.getElementById('p-reg').innerHTML = data.regP;
         }
 
-        // Auto-detect Norwegian
         window.onload = () => {
             const userLang = (navigator.languages && navigator.languages[0]) || navigator.language; 
-            if (userLang.startsWith('no') || userLang.startsWith('nb') || userLang.startsWith('nn')) {
-                translateTo('no');
-            }
+            if (userLang.startsWith('no') || userLang.startsWith('nb')) translateTo('no');
         };
     </script>
 </body>
