@@ -56,7 +56,7 @@
         /* Header */
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding: 0 20px;
         }
         h1 {
@@ -74,14 +74,25 @@
             margin-top: 8px;
             letter-spacing: 1px;
         }
+
+        /* Estilo do Card de Informação */
+        .info-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-sizing: border-box;
+        }
         .description {
             color: var(--text-light);
-            font-size: 0.85rem;
-            margin-top: 12px;
-            max-width: 400px;
-            line-height: 1.4;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
         }
 
         /* Botões em Formato Vertical */
@@ -92,6 +103,7 @@
             flex-direction: column;
             gap: 12px;
             padding: 0 20px;
+            box-sizing: border-box;
         }
         
         .btn-access {
@@ -133,10 +145,13 @@
     <header>
         <h1 id="main-title">SALA • Safe-Load Analytics</h1>
         <div class="subtitle" id="main-subtitle">Predictive Intelligence for Logistics & Transport</div>
-        <div class="description" id="main-description">
-            Designed to quantify and mitigate ergonomic risks in the transport sector, focusing on reducing long-term sickness claims.
-        </div>
     </header>
+
+    <div class="info-card">
+        <p class="description" id="main-description">
+            Designed to quantify and mitigate ergonomic risks in the transport sector, focusing on reducing long-term sickness claims.
+        </p>
+    </div>
 
     <div class="nav-form">
         <a href="driver.html" class="btn-access btn-driver" id="btn-driver">DRIVER APP</a>
@@ -160,7 +175,7 @@
             no: {
                 subtitle: "Prediktiv intelligens for logistikk og transport",
                 description: "Designet for å kvantifisere og redusere ergonomisk risiko i transportsektoren, med fokus på å redusere sykefravær.",
-                driver: "SJÅFØR APP",
+                driver: "SJØFØR APP",
                 dashboard: "SANNTIDSDASHBOARD",
                 company: "BEDRIFTSTILGANG"
             }
