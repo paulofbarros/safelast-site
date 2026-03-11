@@ -1,233 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SALA • Safe-Load Analytics</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>SALA • Platform Access</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
     <style>
         :root {
-            --primary: #002b5c;
-            --accent: #0056b3;
-            --success: #28a745;
-            --text-dark: #1a1a1a;
-            --text-light: #666;
-            --bg-light: #ffffff;
-            --border: #e1e4e8;
+            --bg-color: #ffffff;
+            --card-bg: #f0f7ff;
+            --accent-blue-dark: #002b5c; /* Ajustado para bater com o novo Index */
+            --text-primary: #1a1a1a;
+            --border-color: #d1e3f8;
+            --btn-black: #1a1a1a;
+            --scanner-laser: #00f2ff; 
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             margin: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .lang-nav-central { 
+            display: flex; justify-content: center; gap: 25px; margin-bottom: 30px;
+        }
+        
+        .lang-nav-central span { 
+            cursor: pointer; 
+            width: 45px; 
+            opacity: 0.3; 
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        /* 1. Flags Centralized */
-        .lang-switch {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .lang-switch img {
-            width: 32px;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 2px solid transparent;
-            border-radius: 4px;
-            padding: 2px;
-        }
-        .lang-switch img.active {
-            border-color: var(--accent);
-            filter: none;
-            opacity: 1;
-        }
-        .lang-switch img:not(.active) {
-            filter: grayscale(100%);
-            opacity: 0.5;
-        }
-
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        h1 {
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: -0.5px;
-            margin: 0;
-            color: var(--primary);
-            text-transform: uppercase;
-        }
-        .subtitle {
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 8px;
-            letter-spacing: 1px;
-        }
-
-        /* Features Card */
-        .features-card {
-            background: #fff;
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 450px;
-            margin-bottom: 30px;
-        }
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-        .check-icon {
-            color: var(--success);
-            margin-right: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            line-height: 1;
-        }
-        .feature-text strong {
-            display: block;
-            font-size: 0.95rem;
-            color: var(--primary);
-        }
-        .feature-text span {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        /* Login Box */
-        .login-form {
-            width: 100%;
-            max-width: 450px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        input {
-            border: 1px solid var(--border);
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            outline: none;
+            gap: 5px;
         }
         
-        .btn-access {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-            text-decoration: none;
-            text-align: center;
-            transition: 0.3s;
+        .lang-nav-central span:after {
+            content: attr(data-label);
+            font-size: 0.6rem;
+            font-weight: bold;
+            color: var(--text-primary);
         }
-        .btn-access:hover { background-color: var(--accent); }
 
-        footer {
-            margin-top: 60px;
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-align: center;
+        .lang-nav-central span.active { 
+            opacity: 1; 
+            transform: scale(1.1); 
+            filter: grayscale(0%);
         }
+
+        header { border-bottom: 1px solid #eaeaea; padding-bottom: 20px; margin-bottom: 20px; }
+        h1 { font-size: 2.2rem; margin-bottom: 5px; font-weight: 800; color: var(--accent-blue-dark); }
+        .subtitle { font-size: 1rem; color: #0056b3; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        .login-box {
+            background: #fff; border: 1px solid var(--border-color);
+            padding: 20px; border-radius: 12px; margin: 0 auto 30px auto;
+            display: flex; flex-direction: column; gap: 10px; max-width: 300px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .login-box input { padding: 12px; border-radius: 6px; border: 1px solid #ddd; outline: none; }
+        .login-box button { 
+            padding: 12px; background: var(--btn-black); color: white; border: none; 
+            border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .login-box button:hover { background: #333; }
+
+        .scanner-container {
+            position: relative;
+            width: 180px; height: 260px; margin: 20px auto;
+            background: transparent; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid #eee; border-radius: 10px;
+        }
+        .scanner-container img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        
+        .scanner-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--scanner-laser); 
+            box-shadow: 0 0 10px var(--scanner-laser);
+            animation: scan 3s infinite linear; z-index: 10;
+        }
+        @keyframes scan { 0% { top: 0%; } 50% { top: 100%; } 100% { top: 0%; } }
+
+        .nav-portal {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0 40px 0;
+        }
+        .nav-button {
+            display: block; text-align: center; padding: 20px 10px;
+            background-color: #f5f5f5; color: #ccc !important; 
+            text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+            pointer-events: none; 
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .nav-button.unlocked {
+            background-color: var(--accent-blue-dark);
+            color: white !important;
+            pointer-events: auto;
+            opacity: 1;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,43,92,0.2);
+        }
+        .nav-button.unlocked:hover { transform: translateY(-2px); filter: brightness(1.2); }
+        .nav-button.driver.unlocked { background-color: var(--btn-black); }
+        .nav-button.secondary.unlocked { background-color: #ffffff; color: var(--accent-blue-dark) !important; border: 1px solid var(--accent-blue-dark); }
+
+        section { margin-bottom: 40px; text-align: left; }
+        h2 { border-left: 4px solid var(--accent-blue-dark); padding-left: 15px; font-size: 1.2rem; }
+
+        .algorithm-box {
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 25px; text-align: center;
+        }
+        .formula { font-size: 1.8rem; color: var(--accent-blue-dark); font-weight: 800; font-family: 'Courier New', Courier, monospace; }
+
+        .science-box { background: #fdfdfd; padding: 25px; border-radius: 12px; border: 1px solid #eee; margin-top: 30px; }
+        .science-box p { font-size: 0.9rem; color: #444; margin-bottom: 15px; }
+
+        footer { text-align: center; font-size: 0.75rem; border-top: 1px solid #eaeaea; padding-top: 30px; color: #888; margin-top: 50px; }
+
+        @media (max-width: 600px) { .nav-portal { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="lang-switch">
-        <img src="https://flagcdn.com/w40/no.png" alt="Norsk" onclick="setLanguage('no')" id="flag-no">
-        <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="setLanguage('en')" id="flag-en" class="active">
-    </div>
-
-    <header>
-        <h1 id="main-title">SALA • Safe-Load Analytics</h1>
-        <div class="subtitle" id="main-subtitle">Predictive Intelligence for Norwegian Logistics & Transport</div>
-    </header>
-
-    <div class="features-card" id="features-list">
+    <div class="container">
+        <div class="lang-nav-central">
+            <span id="btn-en" class="active" data-label="ENGLISH" onclick="translateTo('en')">
+                <svg viewBox="0 0 60 30" style="border-radius: 3px;"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></svg>
+            </span>
+            <span id="btn-no" data-label="NORSK" onclick="translateTo('no')">
+                <svg viewBox="0 0 22 16" style="border-radius: 3px;"><rect width="22" height="16" fill="#ba0c2f"/><path d="M0,8 h22 M8,0 v16" stroke="#fff" stroke-width="4"/><path d="M0,8 h22 M8,0 v16" stroke="#00205b" stroke-width="2"/></svg>
+            </span>
         </div>
 
-    <div class="login-form">
-        <input type="text" id="input-id" placeholder="Enterprise ID or Email">
-        <input type="password" id="input-pass" placeholder="Password">
-        <a href="index_start.html" class="btn-access" id="btn-login">ACCESS PLATFORM</a>
+        <header>
+            <h1>SALA • SAFE-LOAD ANALYTICS</h1>
+            <p id="tagline" class="subtitle">Predictive Intelligence for Norwegian Logistics & Transport</p>
+        </header>
+
+        <div id="login-section">
+            <div class="login-box">
+                <input type="email" id="email" placeholder="E-mail">
+                <input type="password" id="password" placeholder="Password">
+                <button onclick="handleLogin()">LOGIN</button>
+                <p id="login-msg" style="font-size: 0.8rem; margin: 0;"></p>
+            </div>
+        </div>
+
+        <div class="scanner-container">
+            <div class="scanner-line"></div>
+            <img src="sala_body.png" alt="SALA Biomechanical Scanner">
+        </div>
+
+        <nav class="nav-portal">
+            <a href="driver.html" class="nav-button driver" id="btn-driver">DRIVER APP</a>
+            <a href="sala-dashboard.html" class="nav-button" id="btn-dashboard">LIVE DASHBOARD</a>
+            <a href="https://paulofbarros.github.io/safelast-site/company.html" class="nav-button secondary" id="btn-company">COMPANY ACCESS</a>
+        </nav>
+
+        <section>
+            <h2 id="h-overview">Overview</h2>
+            <p id="p-overview">SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).</p>
+        </section>
+
+        <section>
+            <h2 id="h-algorithm">The Core Algorithm (AI Powered)</h2>
+            <div class="algorithm-box">
+                <p id="p-algorithm" style="font-weight: 600; font-size: 0.9rem;">Predictive Ergonomic Risk Index:</p>
+                <div class="formula" id="display-formula">Ri = (Sf × Lw) + (Fi × Th)</div>
+                <p id="ai-status" style="font-size:0.7rem; color:var(--accent-blue-dark); margin-top:10px; font-family: monospace;">Neural Network: Standby</p>
+            </div>
+        </section>
+
+        <section class="science-box">
+            <h2 id="h-science" style="color: #002b5c; border-left: 4px solid #002b5c; padding-left: 15px;">The Science Behind SALA</h2>
+            <p id="p-sf"><strong>Biomechanical Surface Factor (Sf):</strong> Operating on compressed snow or ice requires up to 80% more stabilizer muscle activation. We apply a <strong>1.8x multiplier</strong> to account for increased torque on the lumbar region (L5/S1) during unstable conditions.</p>
+            <p id="p-fi"><strong>Neuromuscular Fatigue (Fi):</strong> Risk scales exponentially after <strong>6h 30m</strong> of active duty. Vibration-induced fatigue leads to delayed motor response, making manual load adjustments significantly more hazardous.</p>
+            <p id="p-reg"><strong>Regulatory Compliance (Arbeidsmiljøloven § 4-4):</strong> SALA is designed to fulfill the Norwegian Working Environment Act requirements, providing data-driven evidence for the <em>Verneombud</em> (Safety Delegate) to mandate mechanical assistance.</p>
+        </section>
+
+        <footer>
+            <p>Founded & Developed by: <strong>Paulo Fernando De Barros</strong> | Larvik, Norway</p>
+            <p>© 2026 SALA - Safe-Load Analytics | Biomechanical Risk Research | All rights reserved.</p>
+        </footer>
     </div>
 
-    <footer>
-        © 2026 SALA - Safe-Load Analytics | Biomechanical Risk Research | All rights reserved.
-    </footer>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC6m6qUyU2m6mxXJJvwfo4VmE8rXeTGSDI",
+            authDomain: "sala-21abd.firebaseapp.com",
+            projectId: "sala-21abd",
+            storageBucket: "sala-21abd.firebasestorage.app",
+            messagingSenderId: "207275162134",
+            appId: "1:207275162134:web:1efc80f0ea73ae8d5f1337"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // IA Initialization
+        let aiModel;
+        async function initAI() {
+            if(window.tf) {
+                aiModel = tf.sequential();
+                aiModel.add(tf.layers.dense({units: 8, inputShape: [4], activation: 'relu'}));
+                aiModel.add(tf.layers.dense({units: 1}));
+                aiModel.compile({optimizer: 'adam', loss: 'meanSquaredError'});
+                document.getElementById('ai-status').innerText = "Neural Network: Active & Learning";
+            }
+        }
+        initAI();
+
+        // Auth Listener
+        onAuthStateChanged(auth, (user) => {
+            const btnDriver = document.getElementById('btn-driver');
+            const btnDash = document.getElementById('btn-dashboard');
+            const btnComp = document.getElementById('btn-company');
+            const loginSection = document.getElementById('login-section');
+
+            if (user) {
+                btnDriver.classList.add('unlocked');
+                btnDash.classList.add('unlocked');
+                btnComp.classList.add('unlocked');
+                loginSection.innerHTML = `
+                    <div style="background: #f0f7ff; padding: 15px; border-radius: 10px; border: 1px solid var(--border-color); display: inline-block; margin: 0 auto 30px auto;">
+                        <p style="color:green; font-weight:bold; margin: 0 0 10px 0; font-size:0.8rem;">● System Active: ${user.email}</p>
+                        <button onclick="handleLogout()" style="background: #ff4d4d; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.7rem;">LOGOUT</button>
+                    </div>`;
+            } else {
+                btnDriver.classList.remove('unlocked');
+                btnDash.classList.remove('unlocked');
+                btnComp.classList.remove('unlocked');
+            }
+        });
+
+        // Global functions for Firebase
+        window.handleLogin = function() {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            const msg = document.getElementById('login-msg');
+
+            signInWithEmailAndPassword(auth, email, pass)
+                .then(() => { 
+                    msg.style.color = "green"; 
+                    msg.innerText = "Access Granted! Systems Unlocked.";
+                })
+                .catch(err => { 
+                    msg.style.color = "red"; 
+                    msg.innerText = "Error: Invalid credentials"; 
+                });
+        }
+
+        window.handleLogout = function() {
+            signOut(auth).then(() => { location.reload(); });
+        }
+    </script>
 
     <script>
+        // Traduções
         const translations = {
             en: {
-                subtitle: "Predictive Intelligence for Norwegian Logistics & Transport",
-                features: [
-                    { t: "AI-Driven Injury Prediction", d: "Advanced Artificial Intelligence models that forecast driver injury risks before they occur." },
-                    { t: "Predictive Health Analytics", d: "Smart data processing to identify physiological stress patterns in real-time." },
-                    { t: "Autonomous Safety Monitoring", d: "AI algorithms constantly scanning for high-risk biomechanical operational conditions." },
-                    { t: "Legal Compliance Automation", d: "Seamless alignment with AML § 4-4 standards through automated AI reporting." }
-                ],
-                placeholderId: "Enterprise ID or Email",
-                placeholderPass: "Password",
-                btnLogin: "ACCESS PLATFORM"
+                tagline: "Predictive Intelligence for Norwegian Logistics & Transport",
+                driver: "DRIVER APP",
+                dashboard: "LIVE DASHBOARD",
+                company: "COMPANY ACCESS",
+                overviewH: "Overview",
+                overviewP: "SALA is a proprietary predictive framework designed to quantify and mitigate ergonomic risks in the Norwegian transport sector, focusing on reducing long-term sickness claims (sykemelding).",
+                algorithmH: "The Core Algorithm (AI Powered)",
+                algorithmP: "Predictive Ergonomic Risk Index:",
+                scienceH: "The Science Behind SALA",
+                sfP: "<strong>Biomechanical Surface Factor (Sf):</strong> Operating on compressed snow or ice requires up to 80% more stabilizer muscle activation. We apply a 1.8x multiplier.",
+                fiP: "<strong>Neuromuscular Fatigue (Fi):</strong> Risk scales exponentially after 6h 30m of active duty. Vibration-induced fatigue leads to delayed motor response.",
+                regP: "<strong>Regulatory Compliance (AML § 4-4):</strong> Designed to fulfill the Norwegian Working Environment Act requirements for the Safety Delegate (Verneombud)."
             },
             no: {
-                subtitle: "Prediktiv intelligens for norsk logistikk og transport",
-                features: [
-                    { t: "AI-drevet skadeprediksjon", d: "Avanserte AI-modeller som forutsier risiko for førerskader før de oppstår." },
-                    { t: "Prediktiv helseanalyse", d: "Smart databehandling for å identifisere fysiologiske stressmønstre i sanntid." },
-                    { t: "Autonom sikkerhetsovervåking", d: "AI-algoritmer som kontinuerlig skanner etter biomekaniske risikoforhold." },
-                    { t: "Automatisering av lovlydighet", d: "Sømløs justering mot AML § 4-4 standarder gjennom automatisert AI-rapportering." }
-                ],
-                placeholderId: "Bedrifts-ID eller e-post",
-                placeholderPass: "Passord",
-                btnLogin: "FÅ TILGANG TIL PLATTFORM"
+                tagline: "Prediktiv Intelligens for Norsk Logistikk og Transport",
+                driver: "SJÅFØR APP",
+                dashboard: "SANNTIDSDASHBOARD",
+                company: "BEDRIFTSTILGANG",
+                overviewH: "Oversikt",
+                overviewP: "SALA er et proprietært prediktivt rammeverk designet for å kvantifisere og redusere ergonomisk risiko i den norske transportsektoren.",
+                algorithmH: "Kjernealgoritmen (AI-drevet)",
+                algorithmP: "Prediktiv ergonomisk risikoindeks:",
+                scienceH: "Vitenskapen bak SALA",
+                sfP: "<strong>Biomekanisk overflatefaktor (Sf):</strong> Arbeid på komprimert snø eller is krever opptil 80% mer aktivering. Vi bruker en 1,8x multiplikator.",
+                fiP: "<strong>Nevromuskulær tretthet (Fi):</strong> Risiko øker eksponentielt etter 6t 30m tjeneste. Vibrasjon fører til forsinket motorisk respons.",
+                regP: "<strong>Samsvar med regelverk (AML § 4-4):</strong> Utviklet for å oppfylle kravene i arbeidsmiljøloven for verneombudet."
             }
         };
 
-        function setLanguage(lang) {
-            // Update Flags
-            document.getElementById('flag-en').classList.toggle('active', lang === 'en');
-            document.getElementById('flag-no').classList.toggle('active', lang === 'no');
-
-            // Update Texts
+        function translateTo(lang) {
+            document.querySelectorAll('.lang-nav-central span').forEach(s => s.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+            
             const data = translations[lang];
-            document.getElementById('main-subtitle').innerText = data.subtitle;
-            document.getElementById('input-id').placeholder = data.placeholderId;
-            document.getElementById('input-pass').placeholder = data.placeholderPass;
-            document.getElementById('btn-login').innerText = data.btnLogin;
-
-            // Update Features list
-            const listContainer = document.getElementById('features-list');
-            listContainer.innerHTML = '';
-            data.features.forEach(f => {
-                listContainer.innerHTML += `
-                    <div class="feature-item">
-                        <span class="check-icon">✓</span>
-                        <div class="feature-text">
-                            <strong>${f.t}</strong>
-                            <span>${f.d}</span>
-                        </div>
-                    </div>`;
-            });
+            document.getElementById('tagline').innerText = data.tagline;
+            document.getElementById('btn-driver').innerText = data.driver;
+            document.getElementById('btn-dashboard').innerText = data.dashboard;
+            document.getElementById('btn-company').innerText = data.company;
+            document.getElementById('h-overview').innerText = data.overviewH;
+            document.getElementById('p-overview').innerText = data.overviewP;
+            document.getElementById('h-algorithm').innerText = data.algorithmH;
+            document.getElementById('p-algorithm').innerText = data.algorithmP;
+            document.getElementById('h-science').innerText = data.scienceH;
+            document.getElementById('p-sf').innerHTML = data.sfP;
+            document.getElementById('p-fi').innerHTML = data.fiP;
+            document.getElementById('p-reg').innerHTML = data.regP;
         }
-
-        // Initialize with English
-        setLanguage('en');
     </script>
 </body>
 </html>
