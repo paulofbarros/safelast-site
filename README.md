@@ -1,2 +1,2 @@
 # safelast-site
-Predictive Intelligence for Norwegian Logistics
+Predictive Intelligence for Logistics& Transport
